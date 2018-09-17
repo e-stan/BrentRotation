@@ -10,286 +10,459 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     19256,        470]
-NotebookOptionsPosition[     18753,        448]
-NotebookOutlinePosition[     19086,        463]
-CellTagsIndexPosition[     19043,        460]
+NotebookDataLength[     35950,        811]
+NotebookOptionsPosition[     34720,        785]
+NotebookOutlinePosition[     35071,        800]
+CellTagsIndexPosition[     35028,        797]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
 Notebook[{
 
 Cell[CellGroupData[{
-Cell[BoxData[{
+Cell[BoxData[
  RowBox[{
+  RowBox[{"(*", 
+   RowBox[{"(*", " ", 
+    RowBox[{"Simple", " ", "Example"}], " ", "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"GE", " ", "=", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", "0", "}"}], ",", 
+       RowBox[{"{", "1", "}"}]}], "}"}]}], ";", 
+    RowBox[{"(*", 
+     RowBox[{"gene", " ", "expression", " ", "vector"}], "*)"}], 
+    "\[IndentingNewLine]", 
+    RowBox[{"CS", "=", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"0", ",", "1", ",", "0"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"1", ",", "0", ",", "1"}], "}"}]}], "}"}]}], ";", " ", 
+    RowBox[{"(*", 
+     RowBox[{"control", " ", "stregth", " ", "matrix"}], "*)"}], 
+    "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"a", "[", "TF_", "]"}], " ", ":=", " ", 
+     RowBox[{"Map", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"{", "#", "}"}], "&"}], ",", "TF"}], "]"}]}], ";", " ", 
+    RowBox[{"(*", 
+     RowBox[{"TF", " ", "activity", " ", "matrix"}], "*)"}], 
+    "\[IndentingNewLine]", 
+    RowBox[{"TF", " ", "=", " ", 
+     RowBox[{"{", 
+      RowBox[{"tf1", ",", "tf2", ",", "tf3"}], "}"}]}], ";"}], " ", 
+   RowBox[{"(*", 
+    RowBox[{"List", " ", "of", " ", "tfs", " ", "to", " ", "use"}], "*)"}], 
+   "\[IndentingNewLine]", "*)"}], "\[IndentingNewLine]", 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{"More", " ", "Complex", " ", "Example"}], " ", "*)"}], 
+  "\[IndentingNewLine]", 
   RowBox[{
    RowBox[{"GE", " ", "=", 
-    RowBox[{"{", 
-     RowBox[{
-      RowBox[{"{", "0", "}"}], ",", 
-      RowBox[{"{", "1", "}"}]}], "}"}]}], ";"}], 
-  RowBox[{"(*", 
-   RowBox[{"gene", " ", "expression", " ", "vector"}], 
-   "*)"}]}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{
-   RowBox[{"CS", "=", 
-    RowBox[{"{", 
+    RowBox[{"RandomReal", "[", 
      RowBox[{
       RowBox[{"{", 
-       RowBox[{"0", ",", "1", ",", "0"}], "}"}], ",", 
+       RowBox[{"0", ",", "1"}], "}"}], ",", 
       RowBox[{"{", 
-       RowBox[{"1", ",", "0", ",", "1"}], "}"}]}], "}"}]}], ";"}], " ", 
-  RowBox[{"(*", 
-   RowBox[{"control", " ", "stregth", " ", "matrix"}], 
-   "*)"}]}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{
-   RowBox[{"a", "[", "TF_", "]"}], " ", ":=", " ", 
-   RowBox[{"Map", "[", 
-    RowBox[{
-     RowBox[{
-      RowBox[{"{", "#", "}"}], "&"}], ",", "TF"}], "]"}]}], ";", " ", 
-  RowBox[{"(*", 
-   RowBox[{"TF", " ", "activity", " ", "matrix"}], "*)"}], 
-  "\[IndentingNewLine]", 
-  RowBox[{
-   RowBox[{"getNElementOfListOfList", "[", 
-    RowBox[{"n_", ",", "l_"}], "]"}], " ", ":=", " ", 
-   RowBox[{"Map", "[", 
-    RowBox[{
-     RowBox[{
-      RowBox[{"#", "[", 
-       RowBox[{"[", "n", "]"}], "]"}], "&"}], " ", ",", "l"}], 
-    "]"}]}]}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{
-   RowBox[{"TF", " ", "=", " ", 
-    RowBox[{"{", 
-     RowBox[{"tf1", ",", "tf2", ",", "tf3"}], "}"}]}], ";"}], " ", 
-  RowBox[{"(*", 
-   RowBox[{"List", " ", "of", " ", "tfs", " ", "to", " ", "use"}], "*)"}], 
-  "\[IndentingNewLine]", "\[IndentingNewLine]", 
-  RowBox[{"(*", 
+       RowBox[{"4", ",", "1"}], "}"}]}], "]"}]}], 
+   RowBox[{"(*", 
+    RowBox[{"gene", " ", "expression", " ", "vector"}], "*)"}], 
+   "\[IndentingNewLine]", 
    RowBox[{
+    RowBox[{"CS", "=", 
+     RowBox[{"RandomReal", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"0", ",", "1"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"4", ",", "7"}], "}"}]}], "]"}]}], ";", " ", 
+    RowBox[{"(*", 
+     RowBox[{"control", " ", "stregth", " ", "matrix"}], "*)"}], 
+    "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"a", "[", "TF_", "]"}], " ", ":=", " ", 
+     RowBox[{"Map", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"{", "#", "}"}], "&"}], ",", "TF"}], "]"}]}], ";", " ", 
+    RowBox[{"(*", 
+     RowBox[{"TF", " ", "activity", " ", "matrix"}], "*)"}], 
+    "\[IndentingNewLine]", 
+    RowBox[{"TF", " ", "=", " ", 
+     RowBox[{"{", 
+      RowBox[{
+      "tf1", ",", "tf2", ",", "tf3", ",", "tf4", ",", "tf5", ",", "tf6", ",", 
+       "tf7"}], "}"}]}], ";", " ", 
+    RowBox[{"(*", 
+     RowBox[{"List", " ", "of", " ", "tfs", " ", "to", " ", "use"}], "*)"}], 
+    "\[IndentingNewLine]", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"getNElementOfListOfList", "[", 
+      RowBox[{"n_", ",", "l_"}], "]"}], " ", ":=", " ", 
+     RowBox[{"Map", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"#", "[", 
+         RowBox[{"[", "n", "]"}], "]"}], "&"}], " ", ",", "l"}], "]"}]}]}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"Print", "[", 
+    RowBox[{"\"\<For the given problem: \>\"", ",", 
+     RowBox[{"MatrixForm", "[", "GE", "]"}], ",", "\"\< = \>\"", ",", 
+     RowBox[{"MatrixForm", "[", "CS", "]"}], ",", 
+     RowBox[{"MatrixForm", "[", "TF", "]"}]}], "]"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", 
     RowBox[{
      RowBox[{
       RowBox[{
-      "Show", " ", "comparision", " ", "of", " ", "CS", " ", "matrix", " ", 
-       "rank", " ", "to", " ", "the", " ", "number", " ", "of", " ", 
-       RowBox[{"TFs", ".", " ", "If"}], " ", 
-       RowBox[{"Rank", "[", "CS", "]"}]}], " ", ">"}], " ", "||", "TF", 
-     "||"}], ",", " ", 
+       RowBox[{
+       "Show", " ", "comparision", " ", "of", " ", "CS", " ", "matrix", " ", 
+        "rank", " ", "to", " ", "the", " ", "number", " ", "of", " ", 
+        RowBox[{"TFs", ".", " ", "If"}], " ", 
+        RowBox[{"Rank", "[", "CS", "]"}]}], " ", ">"}], " ", "||", "TF", 
+      "||"}], ",", " ", 
+     RowBox[{
+     "more", " ", "uncertainity", " ", "will", " ", "occur", " ", "in", " ", 
+      "the", " ", "prediction"}]}], " ", "*)"}], "\[IndentingNewLine]", 
+   RowBox[{"Print", "[", 
+    RowBox[{"\"\<Control Strength Matrix Rank: \>\"", ",", 
+     RowBox[{"MatrixRank", "[", "CS", "]"}], ",", 
+     "\"\<\\nTF Dimensionality: \>\"", ",", 
+     RowBox[{"Length", "[", "TF", "]"}]}], "]"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", 
     RowBox[{
-    "more", " ", "uncertainity", " ", "will", " ", "occur", " ", "in", " ", 
-     "the", " ", "prediction"}]}], " ", "*)"}]}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"Print", "[", 
-   RowBox[{"\"\<Control Strength Matrix Rank: \>\"", ",", 
-    RowBox[{"MatrixRank", "[", "CS", "]"}], ",", 
-    "\"\<\\nTF Dimensionality: \>\"", ",", 
-    RowBox[{"Length", "[", "TF", "]"}]}], "]"}], 
-  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{
-   RowBox[{"optimizeMethods", " ", "=", " ", 
-    RowBox[{"{", 
-     RowBox[{
-     "\"\<Automatic\>\"", ",", "\"\<DifferentialEvolution\>\"", ",", 
-      "\"\<NelderMead\>\"", ",", "\"\<RandomSearch\>\"", ",", " ", 
-      "\"\<SimulatedAnnealing\>\""}], "}"}]}], ";"}], "\[IndentingNewLine]", 
-  RowBox[{"(*", 
+    "Find", " ", "a", " ", "solution", " ", "for", " ", "the", " ", "TF", " ",
+      "activity"}], "*)"}], " ", "\[IndentingNewLine]", 
    RowBox[{
-   "Find", " ", "a", " ", "solution", " ", "for", " ", "the", " ", "TF", " ", 
-    "activity"}], "*)"}], " "}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{
-   RowBox[{
-    RowBox[{"{", 
-     RowBox[{"res", ",", "rules"}], "}"}], " ", "=", " ", 
-    RowBox[{"NMinimize", "[", 
-     RowBox[{
-      RowBox[{"{", 
-       RowBox[{
-        RowBox[{"Norm", "[", 
-         RowBox[{"GE", "-", 
-          RowBox[{"CS", ".", 
-           RowBox[{"a", "[", "TF", "]"}]}]}], "]"}], ",", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"res", ",", "rules"}], "}"}], " ", "=", " ", 
+     RowBox[{"NMinimize", "[", 
+      RowBox[{
+       RowBox[{"{", 
         RowBox[{
-         RowBox[{"Flatten", "[", 
-          RowBox[{"a", "[", "TF", "]"}], "]"}], ">", ".001"}]}], "}"}], " ", 
-      ",", "TF"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
-  "\[IndentingNewLine]", 
-  RowBox[{"(*", 
+         RowBox[{"Norm", "[", 
+          RowBox[{"GE", "-", 
+           RowBox[{"CS", ".", 
+            RowBox[{"a", "[", "TF", "]"}]}]}], "]"}], ",", 
+         RowBox[{
+          RowBox[{"Flatten", "[", 
+           RowBox[{"a", "[", "TF", "]"}], "]"}], ">", ".001"}]}], "}"}], " ", 
+       ",", "TF", ",", 
+       RowBox[{"AccuracyGoal", "\[Rule]", "4"}]}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+    "Find", " ", "the", " ", "maximum", " ", "TF", " ", "activity", " ", 
+     "for", " ", "each", " ", "TF", " ", "individually", " ", "contraining", 
+     " ", "the", " ", "system", " ", "to", " ", "the", " ", "same", " ", 
+     "accuracy", " ", "as", " ", "the", " ", "first", " ", "solution"}], 
+    "*)"}], "\[IndentingNewLine]", 
    RowBox[{
-   "Sample", " ", "solution", " ", "space", " ", "using", " ", "different", 
-    " ", "random", " ", "seeds", " ", "and", " ", "optimization", " ", 
-    "methods"}], "*)"}]}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{
-   RowBox[{"allSols", " ", "=", " ", 
-    RowBox[{"Table", "[", 
-     RowBox[{
-      RowBox[{"TF", " ", "/.", " ", 
+    RowBox[{"tfMaxes", " ", "=", 
+     RowBox[{"Map", "[", 
+      RowBox[{
        RowBox[{
-        RowBox[{"NMinimize", "[", 
+        RowBox[{"NMaximize", "[", "\[IndentingNewLine]", 
          RowBox[{
           RowBox[{"{", 
-           RowBox[{
-            RowBox[{"Norm", "[", 
-             RowBox[{"GE", "-", 
-              RowBox[{"CS", ".", 
-               RowBox[{"a", "[", "TF", "]"}]}]}], "]"}], ",", 
+           RowBox[{"#", ",", 
+            RowBox[{"TF", ">", ".001"}], " ", ",", 
             RowBox[{
-             RowBox[{"Flatten", "[", 
-              RowBox[{"a", "[", "TF", "]"}], "]"}], ">", ".001"}]}], "}"}], 
-          " ", ",", "TF", ",", 
-          RowBox[{"Method", " ", "\[Rule]", " ", 
+             RowBox[{"Norm", "[", 
+              RowBox[{"GE", "-", 
+               RowBox[{"CS", ".", 
+                RowBox[{"a", "[", "TF", "]"}]}]}], "]"}], " ", "\[Equal]", 
+             " ", "res"}]}], "}"}], ",", "TF", ",", 
+          RowBox[{"MaxIterations", " ", "\[Rule]", " ", "10000"}], ",", 
+          RowBox[{"AccuracyGoal", "\[Rule]", "4"}]}], "]"}], "&"}], ",", 
+       "TF"}], "]"}]}], ";"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+    "Same", " ", "as", " ", "above", " ", "but", " ", "find", " ", "the", " ",
+      "minimum", " ", "TF", " ", "activity"}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"tfMins", " ", "=", " ", 
+     RowBox[{"Map", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"NMinimize", "[", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"#", ",", 
+            RowBox[{"TF", ">", ".001"}], " ", ",", 
+            RowBox[{
+             RowBox[{"Norm", "[", 
+              RowBox[{"GE", "-", 
+               RowBox[{"CS", ".", 
+                RowBox[{"a", "[", "TF", "]"}]}]}], "]"}], " ", "\[Equal]", 
+             " ", "res"}]}], "}"}], ",", "TF", ",", 
+          RowBox[{"MaxIterations", " ", "\[Rule]", " ", "10000"}], ",", 
+          RowBox[{"AccuracyGoal", "\[Rule]", "4"}]}], "]"}], "&"}], ",", 
+       "TF"}], "]"}]}], ";"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+       "ONLY", " ", "FOR", " ", "3", " ", "Transcription", " ", "Factors"}], 
+       ")"}], " ", "Plot", " ", "cuboid", " ", "where", " ", "true", " ", 
+      "solutions", " ", "exist"}], ",", " ", 
+     RowBox[{
+     "not", " ", "all", " ", "points", " ", "in", " ", "cuboid", " ", "are", 
+      " ", "solutions"}], ",", " ", 
+     RowBox[{
+     "but", " ", "the", " ", "solutions", " ", "with", " ", "the", " ", 
+      "initial", " ", "degree", " ", "of", " ", "accuracy", " ", "are", " ", 
+      "guaranteed", " ", "to", " ", "fall", " ", "in", " ", "this", " ", 
+      "cuboid", " ", "assuming", " ", "the", " ", "optimization", " ", 
+      "algorithms", " ", "converged", " ", "to", " ", "true", " ", "global", 
+      " ", 
+      RowBox[{"optimizers", ".", " ", "Also"}]}]}], " ", "*)"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"If", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Length", "[", "TF", "]"}], "\[Equal]", "3"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"(*", 
+      RowBox[{
+      "Solve", " ", "system", " ", "with", " ", "all", " ", "points", " ", 
+       "defined", " ", "in", " ", "cuboid", " ", "of", " ", "tfMaxes", " ", 
+       "and", " ", "tfMins"}], "*)"}], "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"randomPoint", "=", 
+       RowBox[{"Table", "[", 
+        RowBox[{
+         RowBox[{"With", "[", 
+          RowBox[{
            RowBox[{"{", 
-            RowBox[{
-             RowBox[{"optimizeMethods", "[", 
-              RowBox[{"[", 
+            RowBox[{"point", "=", 
+             RowBox[{"Map", "[", 
+              RowBox[{
                RowBox[{
-                RowBox[{"Mod", "[", 
+                RowBox[{"RandomReal", "[", 
+                 RowBox[{"{", 
+                  RowBox[{
+                   RowBox[{
+                    RowBox[{"getNElementOfListOfList", "[", 
+                    RowBox[{"1", ",", "tfMins"}], "]"}], "[", 
+                    RowBox[{"[", "#", "]"}], "]"}], ",", 
+                   RowBox[{
+                    RowBox[{"getNElementOfListOfList", "[", 
+                    RowBox[{"1", ",", "tfMaxes"}], "]"}], "[", 
+                    RowBox[{"[", "#", "]"}], "]"}]}], "}"}], "]"}], "&"}], 
+               ",", 
+               RowBox[{"Range", "[", 
+                RowBox[{"Length", "[", "TF", "]"}], "]"}]}], "]"}]}], "}"}], 
+           ",", " ", 
+           RowBox[{"{", 
+            RowBox[{"point", ",", 
+             RowBox[{"Norm", "[", 
+              RowBox[{"GE", "-", 
+               RowBox[{"CS", ".", 
+                RowBox[{"a", "[", "point", "]"}]}]}], "]"}]}], "}"}]}], "]"}],
+          ",", "10000"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Graphics3D", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"Cuboid", "[", 
+           RowBox[{
+            RowBox[{"getNElementOfListOfList", "[", 
+             RowBox[{"1", ",", "tfMins"}], "]"}], ",", 
+            RowBox[{"getNElementOfListOfList", "[", 
+             RowBox[{"1", ",", "tfMaxes"}], "]"}]}], "]"}], ",", 
+          RowBox[{"PointSize", "[", "Large", "]"}], ",", 
+          RowBox[{"Point", "[", 
+           RowBox[{"TF", "/.", "rules"}], "]"}], ",", 
+          RowBox[{"Opacity", "[", ".3", "]"}], ",", 
+          RowBox[{"Point", "[", 
+           RowBox[{"Map", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"TF", "/.", "#"}], "&"}], ",", 
+             RowBox[{"getNElementOfListOfList", "[", 
+              RowBox[{"2", ",", "tfMins"}], "]"}]}], "]"}], "]"}], ",", 
+          RowBox[{"Point", "[", 
+           RowBox[{
+            RowBox[{"getNElementOfListOfList", "[", 
+             RowBox[{"1", ",", "randomPoint"}], "]"}], ",", 
+            RowBox[{"VertexColors", "\[Rule]", 
+             RowBox[{"(", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"Blend", "[", 
                  RowBox[{
-                  RowBox[{"RandomInteger", "[", "]"}], ",", "4"}], "]"}], "+",
-                 "1"}], "]"}], "]"}], ",", 
-             RowBox[{"\"\<RandomSeed\>\"", " ", "\[Rule]", " ", 
-              RowBox[{"RandomInteger", "[", "]"}]}]}], "}"}]}]}], "]"}], "[", 
-        
-        RowBox[{"[", "2", "]"}], "]"}]}], ",", "100"}], "]"}]}], ";"}], 
-  "\[IndentingNewLine]", "\[IndentingNewLine]", 
-  RowBox[{"(*", 
-   RowBox[{
-   "Find", " ", "the", " ", "maximum", " ", "TF", " ", "activity", " ", "for",
-     " ", "each", " ", "TF", " ", "individually", " ", "contraining", " ", 
-    "the", " ", "system", " ", "to", " ", "the", " ", "same", " ", "accuracy",
-     " ", "as", " ", "the", " ", "first", " ", "solution"}], 
-   "*)"}]}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{
-   RowBox[{"tfMaxes", " ", "=", 
-    RowBox[{"Map", "[", 
-     RowBox[{
-      RowBox[{
-       RowBox[{"NMaximize", "[", "\[IndentingNewLine]", 
-        RowBox[{
+                  RowBox[{"{", 
+                   RowBox[{"Blue", ",", "Red"}], "}"}], ",", "#"}], "]"}], 
+                "&"}], " ", "/@", " ", 
+               RowBox[{"getNElementOfListOfList", "[", 
+                RowBox[{"2", ",", "randomPoint"}], "]"}]}], ")"}]}]}], "]"}], 
+          ",", 
+          RowBox[{"Point", "[", 
+           RowBox[{"Map", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"TF", "/.", "#"}], "&"}], ",", 
+             RowBox[{"getNElementOfListOfList", "[", 
+              RowBox[{"2", ",", "tfMaxes"}], "]"}]}], "]"}], "]"}]}], "}"}], 
+        ",", 
+        RowBox[{"Axes", "\[Rule]", " ", "True"}], ",", 
+        RowBox[{"PlotRange", " ", "\[Rule]", " ", 
          RowBox[{"{", 
-          RowBox[{"#", ",", 
-           RowBox[{"TF", ">", ".001"}], " ", ",", 
-           RowBox[{
-            RowBox[{"Norm", "[", 
-             RowBox[{"GE", "-", 
-              RowBox[{"CS", ".", 
-               RowBox[{"a", "[", "TF", "]"}]}]}], "]"}], " ", "\[Equal]", " ",
-             "res"}]}], "}"}], ",", "TF", ",", 
-         RowBox[{"MaxIterations", " ", "\[Rule]", " ", "1000"}]}], "]"}], 
-       "&"}], ",", "TF"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
-  "\[IndentingNewLine]", 
-  RowBox[{"(*", 
-   RowBox[{
-   "Same", " ", "as", " ", "above", " ", "but", " ", "find", " ", "the", " ", 
-    "minimum", " ", "TF", " ", "activity"}], "*)"}]}], "\[IndentingNewLine]", 
-
- RowBox[{
-  RowBox[{
-   RowBox[{"tfMines", " ", "=", " ", 
-    RowBox[{"Map", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"0", ",", 
+             RowBox[{"Max", "[", 
+              RowBox[{"getNElementOfListOfList", "[", 
+               RowBox[{"1", ",", "tfMaxes"}], "]"}], "]"}]}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"0", ",", 
+             RowBox[{"Max", "[", 
+              RowBox[{"getNElementOfListOfList", "[", 
+               RowBox[{"1", ",", "tfMaxes"}], "]"}], "]"}]}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"0", ",", 
+             RowBox[{"Max", "[", 
+              RowBox[{"getNElementOfListOfList", "[", 
+               RowBox[{"1", ",", "tfMaxes"}], "]"}], "]"}]}], "}"}]}], 
+          "}"}]}], ",", 
+        RowBox[{"AxesLabel", " ", "\[Rule]", " ", "TF"}]}], "]"}]}], 
+     "\[IndentingNewLine]", ",", "Null"}], "]"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
      RowBox[{
+     "Ranking", " ", "of", " ", "Transcription", " ", "Factor", " ", 
+      "Activity", " ", "based", " ", "on", " ", "Complete", " ", "Sample", 
+      " ", "Space"}], ",", " ", 
+     RowBox[{
+     "sort", " ", "first", " ", "by", " ", "maximum", " ", "tf", " ", 
+      "activity", " ", "then", " ", "again", " ", "by", " ", "minimum", " ", 
+      "tf", " ", "actvity", " ", "to", " ", "break", " ", "ties"}]}], " ", 
+    "*)"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"sortTFActivities", "[", 
+     RowBox[{"TF_", ",", "tfMin_", ",", "tfMax_"}], "]"}], " ", ":=", " ", 
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"tfActPreliminary", " ", "=", " ", 
+         RowBox[{"Reverse", "[", 
+          RowBox[{"Map", "[", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"TF", "[", 
+              RowBox[{"[", "#", "]"}], "]"}], "&"}], ",", 
+            RowBox[{"SortBy", "[", 
+             RowBox[{
+              RowBox[{"Range", "[", 
+               RowBox[{"Length", "[", "TF", "]"}], "]"}], ",", 
+              RowBox[{
+               RowBox[{"tfMax", "[", 
+                RowBox[{"[", "#", "]"}], "]"}], "&"}]}], "]"}]}], "]"}], 
+          "]"}]}], ",", 
+        RowBox[{"tfAct", "=", " ", 
+         RowBox[{"{", "}"}]}], ",", "temp", " ", ",", "i"}], "}"}], ",", 
       RowBox[{
-       RowBox[{"NMinimize", "[", "\[IndentingNewLine]", 
+       RowBox[{"temp", " ", "=", 
+        RowBox[{"{", 
+         RowBox[{"tfActPreliminary", "[", 
+          RowBox[{"[", "1", "]"}], "]"}], "}"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"For", "[", 
         RowBox[{
-         RowBox[{"{", 
-          RowBox[{"#", ",", 
-           RowBox[{"TF", ">", ".001"}], " ", ",", 
+         RowBox[{"i", "=", "2"}], ",", 
+         RowBox[{"i", "\[LessEqual]", 
+          RowBox[{"Length", "[", "tfActPreliminary", "]"}]}], ",", 
+         RowBox[{"i", "=", 
+          RowBox[{"i", "+", "1"}]}], ",", "\[IndentingNewLine]", 
+         RowBox[{"If", "[", 
+          RowBox[{
            RowBox[{
-            RowBox[{"Norm", "[", 
-             RowBox[{"GE", "-", 
-              RowBox[{"CS", ".", 
-               RowBox[{"a", "[", "TF", "]"}]}]}], "]"}], " ", "\[Equal]", " ",
-             "res"}]}], "}"}], ",", "TF", ",", 
-         RowBox[{"MaxIterations", " ", "\[Rule]", " ", "1000"}]}], "]"}], 
-       "&"}], ",", "TF"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
-  "\[IndentingNewLine]", 
-  RowBox[{"(*", 
-   RowBox[{
-    RowBox[{
-    "Plot", " ", "cuboid", " ", "where", " ", "true", " ", "solutions", " ", 
-     "exist"}], ",", " ", 
-    RowBox[{
-    "not", " ", "all", " ", "points", " ", "in", " ", "cuboid", " ", "are", 
-     " ", "solutions"}], ",", " ", 
-    RowBox[{
-    "but", " ", "the", " ", "solutions", " ", "with", " ", "the", " ", 
-     "initial", " ", "degree", " ", "of", " ", "accuracy", " ", "are", " ", 
-     "guaranteed", " ", "to", " ", "fall", " ", "in", " ", "this", " ", 
-     "cuboid", " ", "assuming", " ", "the", " ", "optimization", " ", 
-     "algorithms", " ", "converged", " ", "to", " ", "true", " ", "global", 
-     " ", 
-     RowBox[{"optimizers", ".", " ", "Also"}]}]}], " ", 
-   "*)"}]}], "\[IndentingNewLine]", 
- RowBox[{"Graphics3D", "[", 
-  RowBox[{
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"Cuboid", "[", 
-      RowBox[{"{", 
-       RowBox[{
-        RowBox[{"getNElementOfListOfList", "[", 
-         RowBox[{"1", ",", "tfMines"}], "]"}], ",", 
-        RowBox[{"getNElementOfListOfList", "[", 
-         RowBox[{"1", ",", "tfMaxes"}], "]"}]}], "}"}], "]"}], ",", 
-     RowBox[{"PointSize", "[", "Large", "]"}], ",", 
-     RowBox[{"Point", "[", 
-      RowBox[{"TF", "/.", "rules"}], "]"}], ",", 
-     RowBox[{"Point", "[", "allSols", "]"}], ",", 
-     RowBox[{"Opacity", "[", ".3", "]"}], ",", 
-     RowBox[{"Point", "[", 
-      RowBox[{"Map", "[", 
-       RowBox[{
+            RowBox[{
+             RowBox[{"(", 
+              RowBox[{
+               RowBox[{"tfMin", "[", 
+                RowBox[{"[", "i", "]"}], "]"}], " ", "-", " ", 
+               RowBox[{"tfMin", "[", 
+                RowBox[{"[", 
+                 RowBox[{"i", "-", "1"}], "]"}], "]"}]}], ")"}], " ", "<", 
+             " ", ".00001"}], " ", "&&", " ", 
+            RowBox[{
+             RowBox[{"(", 
+              RowBox[{
+               RowBox[{"tfMax", "[", 
+                RowBox[{"[", "i", "]"}], "]"}], "-", " ", 
+               RowBox[{"tfMax", "[", 
+                RowBox[{"[", 
+                 RowBox[{"i", "-", "1"}], "]"}], "]"}]}], ")"}], " ", "<", 
+             " ", ".00001"}]}], ",", "\[IndentingNewLine]", 
+           RowBox[{"AppendTo", "[", 
+            RowBox[{"temp", ",", 
+             RowBox[{"tfActPreliminary", "[", 
+              RowBox[{"[", "i", "]"}], "]"}]}], "]"}], ",", 
+           "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{"AppendTo", "[", 
+             RowBox[{"tfAct", ",", "temp"}], "]"}], ";", 
+            "\[IndentingNewLine]", 
+            RowBox[{"temp", "=", 
+             RowBox[{"{", 
+              RowBox[{"tfActPreliminary", "[", 
+               RowBox[{"[", "i", "]"}], "]"}], "}"}]}]}]}], 
+          "\[IndentingNewLine]", "]"}]}], " ", "\[IndentingNewLine]", "]"}], 
+       ";", "\[IndentingNewLine]", 
+       RowBox[{"AppendTo", "[", 
+        RowBox[{"tfAct", ",", "temp"}], "]"}], ";", "\[IndentingNewLine]", 
+       "tfAct"}]}], "]"}]}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"Print", "[", 
+    RowBox[{"\"\<Found Solution: \>\"", ",", "TF", ",", "\"\<=\>\"", ",", 
+     RowBox[{"TF", "/.", "rules"}], ",", "\"\<\\n\>\""}], "]"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"Print", "[", 
+    RowBox[{"\"\<Found Ranking of TF Activities: \>\"", ",", 
+     RowBox[{"Reverse", "[", 
+      RowBox[{"SortBy", "[", 
+       RowBox[{"TF", ",", 
         RowBox[{
-         RowBox[{"TF", "/.", "#"}], "&"}], ",", 
-        RowBox[{"getNElementOfListOfList", "[", 
-         RowBox[{"2", ",", "tfMines"}], "]"}]}], "]"}], "]"}], ",", 
-     RowBox[{"Point", "[", 
-      RowBox[{"Map", "[", 
-       RowBox[{
+         RowBox[{"#", "/.", "rules"}], "&"}]}], "]"}], "]"}]}], "]"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"Print", "[", 
+    RowBox[{"TF", ",", "\"\< \[Element] [\>\"", ",", 
+     RowBox[{"getNElementOfListOfList", "[", 
+      RowBox[{"1", ",", "tfMins"}], "]"}], ",", "\"\<,\>\"", ",", 
+     RowBox[{"getNElementOfListOfList", "[", 
+      RowBox[{"1", ",", "tfMaxes"}], "]"}], ",", "\"\<]\>\""}], "]"}], " ", 
+   "\[IndentingNewLine]", 
+   RowBox[{"Print", "[", 
+    RowBox[{"\"\<True ordering of TF activities: \>\"", ",", 
+     RowBox[{"sortTFActivities", "[", 
+      RowBox[{"TF", ",", 
+       RowBox[{"Map", "[", 
         RowBox[{
-         RowBox[{"TF", "/.", "#"}], "&"}], ",", 
-        RowBox[{"getNElementOfListOfList", "[", 
-         RowBox[{"2", ",", "tfMaxes"}], "]"}]}], "]"}], "]"}]}], "}"}], ",", 
-   RowBox[{"Axes", "\[Rule]", " ", "True"}], ",", 
-   RowBox[{"PlotRange", " ", "\[Rule]", " ", 
-    RowBox[{"{", 
-     RowBox[{
-      RowBox[{"{", 
-       RowBox[{"0", ",", 
-        RowBox[{"Max", "[", 
+         RowBox[{
+          RowBox[{"Round", "[", 
+           RowBox[{"#", ",", ".001"}], "]"}], "&"}], ",", 
          RowBox[{"getNElementOfListOfList", "[", 
-          RowBox[{"1", ",", "tfMaxes"}], "]"}], "]"}]}], "}"}], ",", 
-      RowBox[{"{", 
-       RowBox[{"0", ",", 
-        RowBox[{"Max", "[", 
+          RowBox[{"1", ",", "tfMins"}], "]"}]}], "]"}], ",", 
+       RowBox[{"Map", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Round", "[", 
+           RowBox[{"#", ",", ".001"}], "]"}], "&"}], ",", 
          RowBox[{"getNElementOfListOfList", "[", 
-          RowBox[{"1", ",", "tfMaxes"}], "]"}], "]"}]}], "}"}], ",", 
-      RowBox[{"{", 
-       RowBox[{"0", ",", 
-        RowBox[{"Max", "[", 
-         RowBox[{"getNElementOfListOfList", "[", 
-          RowBox[{"1", ",", "tfMaxes"}], "]"}], "]"}]}], "}"}]}], "}"}]}], 
-   ",", 
-   RowBox[{"AxesLabel", " ", "\[Rule]", " ", "TF"}]}], 
-  "]"}], "\[IndentingNewLine]", 
- RowBox[{"Print", "[", 
-  RowBox[{"\"\<Found Solution: \>\"", ",", "TF", ",", "\"\<=\>\"", ",", 
-   RowBox[{"TF", "/.", "rules"}], ",", "\"\<\\n\>\""}], 
-  "]"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"Print", "[", 
-   RowBox[{
-   "TF", ",", "\"\< \[Element] [\>\"", ",", "tfMin", ",", "\"\<,\>\"", ",", 
-    " ", "tfMax", ",", "\"\<]\>\""}], "]"}], 
-  " "}], "\[IndentingNewLine]"}], "Input",
+          RowBox[{"1", ",", "tfMaxes"}], "]"}]}], "]"}]}], "]"}]}], "]"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]"}]}]], "Input",
  CellChangeTimes->{{3.7459311762037773`*^9, 3.745931244335219*^9}, {
    3.745931284624157*^9, 3.745931315464705*^9}, {3.745931414122435*^9, 
    3.745931470755349*^9}, {3.745931520795561*^9, 3.745931559180668*^9}, {
@@ -326,129 +499,293 @@ Cell[BoxData[{
    3.7459393204877253`*^9}, {3.745939478319191*^9, 3.745939560953002*^9}, {
    3.7459397021049356`*^9, 3.7459397031264877`*^9}, {3.745939780553071*^9, 
    3.745940109664534*^9}, {3.745940182034419*^9, 3.745940203584483*^9}, {
-   3.745940237811419*^9, 3.74594025621741*^9}}],
+   3.745940237811419*^9, 3.74594025621741*^9}, {3.7460200468525734`*^9, 
+   3.7460200916928186`*^9}, {3.746020124815489*^9, 3.7460201256288185`*^9}, {
+   3.7460201674480333`*^9, 3.7460201770971737`*^9}, {3.7460202892018137`*^9, 
+   3.7460202935013485`*^9}, {3.7460204123388677`*^9, 
+   3.7460204268998756`*^9}, {3.7460205080043945`*^9, 3.746020711499344*^9}, {
+   3.7460207526014924`*^9, 3.7460207771237726`*^9}, {3.746020810149622*^9, 
+   3.7460208137705593`*^9}, {3.746020844665922*^9, 3.7460208663214474`*^9}, {
+   3.74602090653471*^9, 3.7460209416998243`*^9}, {3.7460209861739655`*^9, 
+   3.7460211603088007`*^9}, {3.746021199137518*^9, 3.7460212023843117`*^9}, {
+   3.7460212361712713`*^9, 3.7460212768566504`*^9}, {3.746021369841731*^9, 
+   3.746021378218376*^9}, 3.746021762492529*^9, {3.7460217945660367`*^9, 
+   3.746021795357927*^9}, {3.746021853238682*^9, 3.7460218741728873`*^9}, 
+   3.7460219063005*^9, {3.7460220582029314`*^9, 3.746022068187363*^9}, {
+   3.7460222291981936`*^9, 3.7460222483295155`*^9}, 3.7460222818938665`*^9, {
+   3.7460223462189445`*^9, 3.7460223762371492`*^9}, {3.746022409476965*^9, 
+   3.7460224734323072`*^9}, {3.7460225202332177`*^9, 3.746022615579535*^9}, {
+   3.7460226716529384`*^9, 3.7460226890096335`*^9}, {3.746022721824048*^9, 
+   3.7460227455039062`*^9}, 3.746022874744499*^9, {3.7461311875630574`*^9, 
+   3.746131212354495*^9}, {3.746131286058606*^9, 3.746131345930038*^9}, {
+   3.746131380587598*^9, 3.7461314488850985`*^9}, {3.74613151644863*^9, 
+   3.746131538266356*^9}, {3.746131734270898*^9, 3.7461317344593515`*^9}, {
+   3.7461318161583223`*^9, 3.7461318411655197`*^9}, {3.74613197113503*^9, 
+   3.7461321040994277`*^9}, {3.7461322131906366`*^9, 3.746132442719672*^9}, {
+   3.7461381150669556`*^9, 3.7461381855459914`*^9}, {3.7461382440903835`*^9, 
+   3.746138326284689*^9}, {3.746138364085087*^9, 3.7461387983027735`*^9}, {
+   3.746138875063405*^9, 3.7461389311058846`*^9}, {3.7461390795689626`*^9, 
+   3.746139109537386*^9}, {3.7461392998661594`*^9, 3.7461393085481567`*^9}, {
+   3.7461396397655067`*^9, 3.746139716400148*^9}, {3.746139807024043*^9, 
+   3.746139840268753*^9}, {3.7461399901446314`*^9, 3.7461400010525923`*^9}, {
+   3.746140060531792*^9, 3.746140129191201*^9}, {3.7461401808214846`*^9, 
+   3.7461401840321026`*^9}, {3.746140221550749*^9, 3.7461402288335505`*^9}, {
+   3.7461403224553556`*^9, 3.746140345719654*^9}, {3.7461404867108526`*^9, 
+   3.746140546711726*^9}, {3.7461411283620305`*^9, 3.7461411398257604`*^9}, {
+   3.746141187778926*^9, 3.7461412566919785`*^9}, {3.7461412973446107`*^9, 
+   3.746141312870077*^9}, {3.746141401383747*^9, 3.7461414676234093`*^9}, {
+   3.746141545342143*^9, 3.746141666515493*^9}, {3.7461417752891607`*^9, 
+   3.7461417822859845`*^9}, {3.7461418214167285`*^9, 
+   3.7461419109990177`*^9}, {3.74614197643373*^9, 3.7461420935991063`*^9}, {
+   3.7461445294930067`*^9, 3.7461445871895933`*^9}, {3.746144627900882*^9, 
+   3.7461446421950493`*^9}, 3.746144688621101*^9, {3.746145723636135*^9, 
+   3.7461458521045113`*^9}, {3.746146813565771*^9, 3.7461468637046704`*^9}, {
+   3.7461469263900113`*^9, 3.746146926584526*^9}, {3.746147124540228*^9, 
+   3.74614715746463*^9}, {3.7461732532123404`*^9, 3.746173263180808*^9}, {
+   3.746173299400876*^9, 
+   3.7461733508847756`*^9}},ExpressionUUID->"e66bfa20-2c77-4ccf-b42d-\
+544f808d9055"],
 
 Cell[BoxData[
- InterpretationBox[
-  RowBox[{"\<\"Control Strength Matrix Rank: \"\>", "\[InvisibleSpace]", "2", 
-   "\[InvisibleSpace]", "\<\"\\nTF Dimensionality: \"\>", "\[InvisibleSpace]",
-    "3"}],
-  SequenceForm[
-  "Control Strength Matrix Rank: ", 2, "\nTF Dimensionality: ", 3],
-  Editable->False]], "Print",
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", "0.05248665568024968`", "}"}], ",", 
+   RowBox[{"{", "0.8317101798079436`", "}"}], ",", 
+   RowBox[{"{", "0.7182851633385738`", "}"}], ",", 
+   RowBox[{"{", "0.5337248445806573`", "}"}]}], "}"}]], "Output",
  CellChangeTimes->{
-  3.745935591144215*^9, 3.745935741930893*^9, 3.74593586730361*^9, 
-   3.745935955959723*^9, {3.7459360548630733`*^9, 3.745936064114726*^9}, {
-   3.745936288784863*^9, 3.745936304918091*^9}, {3.745936338503924*^9, 
-   3.7459363536608353`*^9}, 3.7459363865194883`*^9, 3.745936447817223*^9, 
-   3.74593652369641*^9, 3.745936598442327*^9, {3.745937559590412*^9, 
-   3.745937589569832*^9}, 3.7459376503057747`*^9, 3.7459377005966873`*^9, 
-   3.7459377598996773`*^9, {3.745938861933559*^9, 3.745938879120558*^9}, {
-   3.7459389189050217`*^9, 3.7459389347530003`*^9}, 3.745939036733328*^9, 
-   3.7459391027271357`*^9, 3.745939170872179*^9, 3.745939321513895*^9, 
-   3.745939536228057*^9, 3.74593971457443*^9, 3.7459403005164433`*^9}],
-
-Cell[BoxData[
- Graphics3DBox[{
-   CuboidBox[{{0.001, 0.001, 0.001}, {0.9990232436320993, 0.00100004893765625,
-     0.9990232436320797}}], 
-   {PointSize[Large], 
-    Point3DBox[{0.0010003823923412794`, 0.001, 0.9989996101658835}], 
-    Point3DBox[CompressedData["
-1:eJxTTMoPSmViYGBIAWJmID7SoJb1IjnA/s/Kj5d8kwLs+5XOsJ/7/t7e+I7f
-JKuV1+Di8z9wbE5a/cT+V2Tdgms/H8PFt3gIbQ/iuUE1cY8gE9uX3zfBxVOu
-JV5hWvjWnlR34hLHZQ6p7qFW+JDqHlzipPqX1HAjNV5IVT/Y0iG1wp9a6Z9a
-7qGW+dQKB2qlW1LTIbXSP7XKK1LzBa3jnVT3U6ucJDU8aZ0OByq/U6v+olb4
-D7Z8Smp+pJY5pIYzAKeXF3M=
-     "]], 
-    {Opacity[0.3], 
-     Point3DBox[{{0.001, 0.001, 0.9990000254290726}, {0.24153407604484606`, 
-      0.001, 0.7584659075368358}, {0.9990000131600798, 0.001, 0.001}}], 
-     Point3DBox[{{0.9990232436320993, 0.001, 0.001}, {0.5549181876628546, 
-      0.00100004893765625, 0.4450818085054634}, {0.001, 0.001, 
-      0.9990232436320797}}]}}},
-  Axes->True,
-  AxesLabel->{
-    FormBox["tf1", TraditionalForm], 
-    FormBox["tf2", TraditionalForm], 
-    FormBox["tf3", TraditionalForm]},
-  ImageSize->{360., 399.1957194179677},
-  PlotRange->{{0, 0.9990232436320993}, {0, 0.9990232436320993}, {
-    0, 0.9990232436320993}},
-  ViewPoint->{0.7343962528453456, -3.1173107412781293`, 1.0922618212309378`},
-  ViewVertical->{0.09301516913202783, -0.2854423787416785, 
-   0.9538714938237922}]], "Output",
- CellChangeTimes->{
-  3.745938879485712*^9, {3.745938919991128*^9, 3.745938944134343*^9}, 
-   3.745939036735177*^9, 3.745939102728826*^9, 3.745939305868813*^9, 
-   3.74593943417293*^9, 3.745939560669793*^9, 3.745939738443514*^9, 
-   3.745940324917615*^9}],
+  3.746173356210532*^9},ExpressionUUID->"09bf5f79-bda5-4614-b955-\
+4ad37bda7230"],
 
 Cell[CellGroupData[{
 
 Cell[BoxData[
  InterpretationBox[
+  RowBox[{"\<\"For the given problem: \"\>", "\[InvisibleSpace]", 
+   TagBox[
+    RowBox[{"(", "\[NoBreak]", GridBox[{
+       {"0.05248665568024968`"},
+       {"0.8317101798079436`"},
+       {"0.7182851633385738`"},
+       {"0.5337248445806573`"}
+      },
+      GridBoxAlignment->{
+       "Columns" -> {{Center}}, "ColumnsIndexed" -> {}, 
+        "Rows" -> {{Baseline}}, "RowsIndexed" -> {}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.7]}, 
+          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.4]}, 
+          Offset[0.2]}, "RowsIndexed" -> {}}], "\[NoBreak]", ")"}],
+    Function[BoxForm`e$, 
+     MatrixForm[BoxForm`e$]]], "\[InvisibleSpace]", "\<\" = \"\>", 
+   "\[InvisibleSpace]", 
+   TagBox[
+    RowBox[{"(", "\[NoBreak]", GridBox[{
+       {"0.79170359043371`", "0.28947558969008647`", "0.9219001054158478`", 
+        "0.2501330953150853`", "0.16900900371644245`", "0.16694204564456916`",
+         "0.3470392736377177`"},
+       {"0.8838130696929336`", "0.25448332435120213`", "0.2737504070825303`", 
+        "0.07532095916765136`", "0.557848880195484`", "0.43360586693977266`", 
+        "0.20855709278978307`"},
+       {"0.8610790592466337`", "0.17979108465311744`", "0.26901327925579666`",
+         "0.6568028476495171`", "0.1332516686159404`", "0.7383206416960415`", 
+        "0.7337773048248708`"},
+       {"0.5156525182695559`", "0.5347401756563543`", "0.16075619508894867`", 
+        "0.07591581009302639`", "0.2077413847778986`", "0.5908664763486786`", 
+        "0.20374391346769327`"}
+      },
+      GridBoxAlignment->{
+       "Columns" -> {{Center}}, "ColumnsIndexed" -> {}, 
+        "Rows" -> {{Baseline}}, "RowsIndexed" -> {}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.7]}, 
+          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.4]}, 
+          Offset[0.2]}, "RowsIndexed" -> {}}], "\[NoBreak]", ")"}],
+    Function[BoxForm`e$, 
+     MatrixForm[BoxForm`e$]]], "\[InvisibleSpace]", 
+   TagBox[
+    RowBox[{"(", "\[NoBreak]", 
+     TagBox[GridBox[{
+        {"tf1"},
+        {"tf2"},
+        {"tf3"},
+        {"tf4"},
+        {"tf5"},
+        {"tf6"},
+        {"tf7"}
+       },
+       GridBoxAlignment->{
+        "Columns" -> {{Center}}, "ColumnsIndexed" -> {}, 
+         "Rows" -> {{Baseline}}, "RowsIndexed" -> {}},
+       GridBoxSpacings->{"Columns" -> {
+           Offset[0.27999999999999997`], {
+            Offset[0.5599999999999999]}, 
+           Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+           Offset[0.2], {
+            Offset[0.4]}, 
+           Offset[0.2]}, "RowsIndexed" -> {}}],
+      Column], "\[NoBreak]", ")"}],
+    Function[BoxForm`e$, 
+     MatrixForm[BoxForm`e$]]]}],
+  SequenceForm["For the given problem: ", 
+   MatrixForm[{{0.05248665568024968}, {0.8317101798079436}, {
+    0.7182851633385738}, {0.5337248445806573}}], " = ", 
+   MatrixForm[{{0.79170359043371, 0.28947558969008647`, 0.9219001054158478, 
+    0.2501330953150853, 0.16900900371644245`, 0.16694204564456916`, 
+    0.3470392736377177}, {0.8838130696929336, 0.25448332435120213`, 
+    0.2737504070825303, 0.07532095916765136, 0.557848880195484, 
+    0.43360586693977266`, 0.20855709278978307`}, {0.8610790592466337, 
+    0.17979108465311744`, 0.26901327925579666`, 0.6568028476495171, 
+    0.1332516686159404, 0.7383206416960415, 0.7337773048248708}, {
+    0.5156525182695559, 0.5347401756563543, 0.16075619508894867`, 
+    0.07591581009302639, 0.2077413847778986, 0.5908664763486786, 
+    0.20374391346769327`}}], 
+   MatrixForm[{$CellContext`tf1, $CellContext`tf2, $CellContext`tf3, \
+$CellContext`tf4, $CellContext`tf5, $CellContext`tf6, $CellContext`tf7}]],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.746141666865026*^9, 3.7461417964086266`*^9, 
+  3.7461420768025084`*^9, 3.746142126323473*^9, 3.746144666337788*^9, 
+  3.746144698372257*^9, 3.7461458573085504`*^9, 3.7461468655287914`*^9, 
+  3.7461470113967276`*^9, 3.7461471265703726`*^9, 3.746147159689686*^9, 
+  3.7461733562224965`*^9},ExpressionUUID->"4ddb2a95-43b1-4c38-82ac-\
+1ebd9c82d6dd"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Control Strength Matrix Rank: \"\>", "\[InvisibleSpace]", "4", 
+   "\[InvisibleSpace]", "\<\"\\nTF Dimensionality: \"\>", "\[InvisibleSpace]",
+    "7"}],
+  SequenceForm[
+  "Control Strength Matrix Rank: ", 4, "\nTF Dimensionality: ", 7],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.746141666865026*^9, 3.7461417964086266`*^9, 
+  3.7461420768025084`*^9, 3.746142126323473*^9, 3.746144666337788*^9, 
+  3.746144698372257*^9, 3.7461458573085504`*^9, 3.7461468655287914`*^9, 
+  3.7461470113967276`*^9, 3.7461471265703726`*^9, 3.746147159689686*^9, 
+  3.746173356227483*^9},ExpressionUUID->"95582b73-e8ed-42a2-8df8-\
+e6a8223a0fee"],
+
+Cell[BoxData[
+ InterpretationBox[
   RowBox[{"\<\"Found Solution: \"\>", "\[InvisibleSpace]", 
    RowBox[{"{", 
-    RowBox[{"tf1", ",", "tf2", ",", "tf3"}], "}"}], 
-   "\[InvisibleSpace]", "\<\"=\"\>", "\[InvisibleSpace]", 
+    RowBox[{
+    "tf1", ",", "tf2", ",", "tf3", ",", "tf4", ",", "tf5", ",", "tf6", ",", 
+     "tf7"}], "}"}], "\[InvisibleSpace]", "\<\"=\"\>", "\[InvisibleSpace]", 
    RowBox[{"{", 
     RowBox[{
-    "0.0010003823923412794`", ",", "0.001`", ",", "0.9989996101658835`"}], 
-    "}"}], "\[InvisibleSpace]", "\<\"\\n\"\>"}],
+    "0.0010000081202401901`", ",", "0.001000002003554317`", ",", 
+     "0.0010000027195314167`", ",", "0.0010003885865484112`", ",", 
+     "0.7718884057251915`", ",", "0.7493408704802245`", ",", 
+     "0.0010000614226317634`"}], "}"}], "\[InvisibleSpace]", "\<\"\\n\"\>"}],
   SequenceForm[
-  "Found Solution: ", {$CellContext`tf1, $CellContext`tf2, $CellContext`tf3}, 
-   "=", {0.0010003823923412794`, 0.001, 0.9989996101658835}, "\n"],
+  "Found Solution: ", {$CellContext`tf1, $CellContext`tf2, $CellContext`tf3, \
+$CellContext`tf4, $CellContext`tf5, $CellContext`tf6, $CellContext`tf7}, 
+   "=", {0.0010000081202401901`, 0.001000002003554317, 0.0010000027195314167`,
+    0.0010003885865484112`, 0.7718884057251915, 0.7493408704802245, 
+   0.0010000614226317634`}, "\n"],
   Editable->False]], "Print",
- CellChangeTimes->{
-  3.745935591144215*^9, 3.745935741930893*^9, 3.74593586730361*^9, 
-   3.745935955959723*^9, {3.7459360548630733`*^9, 3.745936064114726*^9}, {
-   3.745936288784863*^9, 3.745936304918091*^9}, {3.745936338503924*^9, 
-   3.7459363536608353`*^9}, 3.7459363865194883`*^9, 3.745936447817223*^9, 
-   3.74593652369641*^9, 3.745936598442327*^9, {3.745937559590412*^9, 
-   3.745937589569832*^9}, 3.7459376503057747`*^9, 3.7459377005966873`*^9, 
-   3.7459377598996773`*^9, {3.745938861933559*^9, 3.745938879120558*^9}, {
-   3.7459389189050217`*^9, 3.7459389347530003`*^9}, 3.745939036733328*^9, 
-   3.7459391027271357`*^9, 3.745939170872179*^9, 3.745939321513895*^9, 
-   3.745939536228057*^9, 3.74593971457443*^9, 3.74594032492185*^9}],
+ CellChangeTimes->{3.746141666865026*^9, 3.7461417964086266`*^9, 
+  3.7461420768025084`*^9, 3.746142126323473*^9, 3.746144666337788*^9, 
+  3.746144698372257*^9, 3.7461458573085504`*^9, 3.7461468655287914`*^9, 
+  3.7461470113967276`*^9, 3.7461471265703726`*^9, 3.746147159689686*^9, 
+  3.7461738334628725`*^9},ExpressionUUID->"918d1409-6afc-4c08-85ee-\
+50974f99bd14"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Found Ranking of TF Activities: \"\>", "\[InvisibleSpace]", 
+   RowBox[{"{", 
+    RowBox[{
+    "tf5", ",", "tf6", ",", "tf4", ",", "tf7", ",", "tf1", ",", "tf3", ",", 
+     "tf2"}], "}"}]}],
+  SequenceForm[
+  "Found Ranking of TF Activities: ", {$CellContext`tf5, $CellContext`tf6, \
+$CellContext`tf4, $CellContext`tf7, $CellContext`tf1, $CellContext`tf3, \
+$CellContext`tf2}],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.746141666865026*^9, 3.7461417964086266`*^9, 
+  3.7461420768025084`*^9, 3.746142126323473*^9, 3.746144666337788*^9, 
+  3.746144698372257*^9, 3.7461458573085504`*^9, 3.7461468655287914`*^9, 
+  3.7461470113967276`*^9, 3.7461471265703726`*^9, 3.746147159689686*^9, 
+  3.7461738334658628`*^9},ExpressionUUID->"5890f154-06e8-47d5-9cb7-\
+669ef4b3c8f1"],
 
 Cell[BoxData[
  InterpretationBox[
   RowBox[{
    RowBox[{"{", 
-    RowBox[{"tf1", ",", "tf2", ",", "tf3"}], "}"}], 
-   "\[InvisibleSpace]", "\<\" \[Element] [\"\>", "\[InvisibleSpace]", 
-   RowBox[{"{", 
-    RowBox[{"0.001`", ",", "0.001`", ",", "0.001`"}], "}"}], 
-   "\[InvisibleSpace]", "\<\",\"\>", "\[InvisibleSpace]", 
+    RowBox[{
+    "tf1", ",", "tf2", ",", "tf3", ",", "tf4", ",", "tf5", ",", "tf6", ",", 
+     "tf7"}], "}"}], "\[InvisibleSpace]", "\<\" \[Element] [\"\>", 
+   "\[InvisibleSpace]", 
    RowBox[{"{", 
     RowBox[{
-    "0.9990232436320993`", ",", "0.00100004893765625`", ",", 
-     "0.9990232436320797`"}], "}"}], "\[InvisibleSpace]", "\<\"]\"\>"}],
-  SequenceForm[{$CellContext`tf1, $CellContext`tf2, $CellContext`tf3}, 
-   " \[Element] [", {0.001, 0.001, 0.001}, ",", {0.9990232436320993, 
-   0.00100004893765625, 0.9990232436320797}, "]"],
+    "0.001`", ",", "0.001`", ",", "0.001`", ",", "0.001`", ",", 
+     "0.769168675501581`", ",", "0.7477738127239127`", ",", "0.001`"}], "}"}],
+    "\[InvisibleSpace]", "\<\",\"\>", "\[InvisibleSpace]", 
+   RowBox[{"{", 
+    RowBox[{
+    "0.001000864767469943`", ",", "0.001001307407737734`", ",", 
+     "0.0010006341823161325`", ",", "0.001002010948954041`", ",", 
+     "0.7746129047548751`", ",", "0.7509112973571938`", ",", 
+     "0.0010023868295764757`"}], "}"}], "\[InvisibleSpace]", "\<\"]\"\>"}],
+  SequenceForm[{$CellContext`tf1, $CellContext`tf2, $CellContext`tf3, \
+$CellContext`tf4, $CellContext`tf5, $CellContext`tf6, $CellContext`tf7}, 
+   " \[Element] [", {0.001, 0.001, 0.001, 0.001, 0.769168675501581, 
+   0.7477738127239127, 0.001}, ",", {0.001000864767469943, 
+   0.001001307407737734, 0.0010006341823161325`, 0.001002010948954041, 
+   0.7746129047548751, 0.7509112973571938, 0.0010023868295764757`}, "]"],
   Editable->False]], "Print",
- CellChangeTimes->{
-  3.745935591144215*^9, 3.745935741930893*^9, 3.74593586730361*^9, 
-   3.745935955959723*^9, {3.7459360548630733`*^9, 3.745936064114726*^9}, {
-   3.745936288784863*^9, 3.745936304918091*^9}, {3.745936338503924*^9, 
-   3.7459363536608353`*^9}, 3.7459363865194883`*^9, 3.745936447817223*^9, 
-   3.74593652369641*^9, 3.745936598442327*^9, {3.745937559590412*^9, 
-   3.745937589569832*^9}, 3.7459376503057747`*^9, 3.7459377005966873`*^9, 
-   3.7459377598996773`*^9, {3.745938861933559*^9, 3.745938879120558*^9}, {
-   3.7459389189050217`*^9, 3.7459389347530003`*^9}, 3.745939036733328*^9, 
-   3.7459391027271357`*^9, 3.745939170872179*^9, 3.745939321513895*^9, 
-   3.745939536228057*^9, 3.74593971457443*^9, 3.745940324922859*^9}]
+ CellChangeTimes->{3.746141666865026*^9, 3.7461417964086266`*^9, 
+  3.7461420768025084`*^9, 3.746142126323473*^9, 3.746144666337788*^9, 
+  3.746144698372257*^9, 3.7461458573085504`*^9, 3.7461468655287914`*^9, 
+  3.7461470113967276`*^9, 3.7461471265703726`*^9, 3.746147159689686*^9, 
+  3.7461738334698906`*^9},ExpressionUUID->"5ad95abf-20e6-4615-b0ce-\
+67a3b60d9230"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"True ordering of TF activities: \"\>", "\[InvisibleSpace]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"tf5", ",", "tf6", ",", "tf7", ",", "tf4"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"tf3", ",", "tf2", ",", "tf1"}], "}"}]}], "}"}]}],
+  SequenceForm[
+  "True ordering of TF activities: ", {{$CellContext`tf5, $CellContext`tf6, \
+$CellContext`tf7, $CellContext`tf4}, {$CellContext`tf3, $CellContext`tf2, \
+$CellContext`tf1}}],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.746141666865026*^9, 3.7461417964086266`*^9, 
+  3.7461420768025084`*^9, 3.746142126323473*^9, 3.746144666337788*^9, 
+  3.746144698372257*^9, 3.7461458573085504`*^9, 3.7461468655287914`*^9, 
+  3.7461470113967276`*^9, 3.7461471265703726`*^9, 3.746147159689686*^9, 
+  3.7461738334728446`*^9},ExpressionUUID->"93dc267e-13ac-46e8-a068-\
+48a7d47e343c"]
 }, Open  ]]
 }, Open  ]],
 
 Cell[BoxData[""], "Input",
- CellChangeTimes->{{3.7459338297899847`*^9, 3.745933831171247*^9}}]
+ CellChangeTimes->{{3.7459338297899847`*^9, 
+  3.745933831171247*^9}},ExpressionUUID->"7c0c9e97-0372-4052-967c-\
+edc2373fbde3"],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.7460216829581137`*^9, 3.7460216868426065`*^9}, 
+   3.746021913123209*^9},ExpressionUUID->"49e03336-f2ec-4986-9689-\
+64e68f95d91e"]
 },
-WindowSize->{928, 1028},
-WindowMargins->{{Automatic, 0}, {0, Automatic}},
-FrontEndVersion->"11.0 for Linux x86 (64-bit) (July 28, 2016)",
+WindowSize->{1920, 997},
+WindowMargins->{{Automatic, 1528}, {Automatic, 253}},
+FrontEndVersion->"11.2 for Microsoft Windows (64-bit) (September 10, 2017)",
 StyleDefinitions->"Default.nb"
 ]
 (* End of Notebook Content *)
@@ -463,15 +800,19 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[580, 22, 12584, 306, 972, "Input"],
-Cell[13167, 330, 1064, 18, 43, "Print"],
-Cell[14234, 350, 1594, 34, 414, "Output"],
+Cell[580, 22, 23759, 524, 1226, "Input",ExpressionUUID->"e66bfa20-2c77-4ccf-b42d-544f808d9055"],
+Cell[24342, 548, 364, 9, 32, "Output",ExpressionUUID->"09bf5f79-bda5-4614-b955-4ad37bda7230"],
 Cell[CellGroupData[{
-Cell[15853, 388, 1315, 24, 42, "Print"],
-Cell[17171, 414, 1457, 27, 24, "Print"]
+Cell[24731, 561, 4275, 95, 110, "Print",ExpressionUUID->"4ddb2a95-43b1-4c38-82ac-1ebd9c82d6dd"],
+Cell[29009, 658, 681, 13, 41, "Print",ExpressionUUID->"95582b73-e8ed-42a2-8df8-e6a8223a0fee"],
+Cell[29693, 673, 1330, 25, 41, "Print",ExpressionUUID->"918d1409-6afc-4c08-85ee-50974f99bd14"],
+Cell[31026, 700, 823, 17, 22, "Print",ExpressionUUID->"5890f154-06e8-47d5-9cb7-669ef4b3c8f1"],
+Cell[31852, 719, 1596, 31, 22, "Print",ExpressionUUID->"5ad95abf-20e6-4615-b0ce-67a3b60d9230"],
+Cell[33451, 752, 902, 19, 22, "Print",ExpressionUUID->"93dc267e-13ac-46e8-a068-48a7d47e343c"]
 }, Open  ]]
 }, Open  ]],
-Cell[18655, 445, 94, 1, 30, "Input"]
+Cell[34380, 775, 154, 3, 28, "Input",ExpressionUUID->"7c0c9e97-0372-4052-967c-edc2373fbde3"],
+Cell[34537, 780, 179, 3, 28, "Input",ExpressionUUID->"49e03336-f2ec-4986-9689-64e68f95d91e"]
 }
 ]
 *)
