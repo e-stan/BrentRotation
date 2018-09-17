@@ -1,0 +1,75 @@
+grr1  Other F-box Protein
+cka1  Kinase Catalytic
+fus3  Kinase Catalytic
+msg5  Phosphatase Catalytic
+ppt1  Phosphatase Catalytic
+vps15  Kinase Catalytic
+oca1  Phosphatase Catalytic
+elm1  Kinase Catalytic
+ire1  Kinase Catalytic
+kkq8  Kinase Catalytic
+tps2  Phosphatase Associated
+cln3  Cyclin Activator
+cln2  Cyclin Activator
+tco89 RNA Stability
+bck1  Kinase Catalytic
+ckb1  Kinase Associated
+dun1  Kinase Catalytic
+ypk1  Kinase Catalytic
+mck1  Kinase Catalytic
+ybr028c  Kinase Catalytic
+fab1  Kinase Metabolic/Lipid
+bmh1  Other DNA Binding
+ste11  Kinase Catalytic
+ste12  Other Transcription Factor
+thr1  Kinase Metabolic/Lipid
+ssk2  Kinase Catalytic
+kin3  Kinase Catalytic
+ste20  Kinase Catalytic
+cka2  Kinase Catalytic
+cla4  Kinase Catalytic
+snf1  Kinase Catalytic
+ssk1  Other Phosphorelay Anchor
+cmk1  Kinase Catalytic
+ctk1  Kinase Catalytic
+cmk2  Kinase Catalytic
+ksp1  Kinase Catalytic
+yvh1  Phosphatase Catalytic
+rts1  Phosphatase Binding
+slt2  Kinase Catalytic
+rxt2  Other Histone Deacetylase
+chk1  Kinase Catalytic
+mks1  Other Transcription Factor
+tpk3  Kinase Catalytic
+mih1  Phosphatase Catalytic
+hog1  Kinase Catalytic
+kin82  Kinase Catalytic
+lcb5  Kinase Metabolic/Lipid
+pcl8  Kinase Binding Protein
+ptc1  Phosphatase Catalytic
+pbs2  Kinase Catalytic
+sit4  Phosphatase Catalytic
+ptc4  Phosphatase Catalytic
+ppg1  Phosphatase Catalytic
+sir2  Other Histone Deacetylase
+ptk2  Kinase Catalytic
+sat4  Kinase Catalytic
+ask10  Other  RNA Polymerase II Holoenzyme 
+pho85  Kinase Catalytic
+sap155  Phosphatase Binding
+ptp3  Phosphatase Catalytic
+pcl6  Kinase Binding
+yck3  Kinase Catalytic
+ppz1  Phosphatase Catalytic
+clb2  Cyclin 
+clb1  Cyclin
+rim15  Kinase Catalytic
+rtg3  Other Transcription Factor
+rtg2  Other Phosphoprotein Binding
+clb5  Kinase Activator
+rim11  Kinase Catalytic
+sky1  Kinase Catalytic
+cgi121  tRNA Modifier
+pho80  Kinase Binding
+mkk2  Kinase Catalytic
+ste7  Kinase Catalytic
