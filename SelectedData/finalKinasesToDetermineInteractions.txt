@@ -13,7 +13,6 @@ ste20  Kinase Catalytic
 bck1  Kinase Catalytic
 dun1  Kinase Catalytic
 ypk1  Kinase Catalytic
-mck1  Kinase Catalytic
 ste11  Kinase Catalytic
 thr1  Kinase Metabolic/Lipid
 kin3  Kinase Catalytic
