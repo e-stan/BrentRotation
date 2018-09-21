@@ -4,6 +4,7 @@ bioGridFile = "BIOGRID-ORGANISM-Saccharomyces_cerevisiae_S288c-3.4.164.tab2.txt"
 zevTFFile = "TFListZev.txt"
 kinaseListFile = "finalKinasesToDetermineInteractions.txt"
 
+
 def flatten(l):
 	return [item for sublist in l for item in sublist]
 

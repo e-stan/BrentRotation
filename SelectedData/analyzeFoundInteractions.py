@@ -27,10 +27,11 @@ for interaction in interactions:
 	else: tf = str.lower(tf[0])
 	kinase = [inter for inter in (interaction[5:9]+flatten(interaction[9:11])) if str.lower(inter) in kinases and inter != tf]
 	if len(kinase) != 1: print("error",kinase,tf)
-	elif interaction[12] == "physical": 
-		kinaseTFInteractions[tf].append(str.lower(kinase[0]))
+	elif interaction[12] == "physical":
+		kinase = [str.lower(inter) for inter in interaction[5:7] if str.lower(inter) != tf][0]
+		kinaseTFInteractions[tf].append(kinase)
 		interactionCount+=1
-		interactionRecord.append([tf,str.lower(kinase[0]),interaction[13],interaction[14],interaction[17],interaction[18],interaction[19],interaction[20]])
+		interactionRecord.append([tf,kinase,interaction[13],interaction[14],interaction[17],interaction[18],interaction[19],interaction[20]])
 interactionRecord.sort(key=lambda x:x[0])
 outputFileOfInteraction = open("finalBioGRIDYeastKinaseTFInteractions.tsv","w")
 outputFileOfInteraction.write("TF\tKinase\tAuthor\tPubmed ID\tThroughput\tScore\tModification\tPhenotypes")
@@ -55,9 +56,10 @@ plt.xlabel("Number of Kinases/Phosphatases Interacting with TF")
 plt.ylabel("Frequency")
 plt.title("Distribution of TF Interactions")
 
-kinaseInteractions = {kinase:[] for kinase in kinases}
+kinaseInteractions = {}
 for tf in kinaseTFInteractions:
 	for kinase in kinaseTFInteractions[tf]:
+		if kinase not in kinaseInteractions: kinaseInteractions[kinase] = []
 		kinaseInteractions[kinase].append(tf)
 plt.figure()
 plt.hist([len(kinaseInteractions[kinase]) for kinase in kinaseInteractions],bins = 50)
