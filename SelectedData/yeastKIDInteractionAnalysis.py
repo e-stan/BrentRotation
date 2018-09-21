@@ -1,16 +1,20 @@
 import matplotlib.pyplot as plt
 import copy
 
+
+def flatten(l):
+	return [item for sublist in l for item in sublist]
+
 zevTFFile = "TFListZev.txt"
 yeastKIDFile = "yeastKIDKinaseInteractions.txt"
 
-bioGridFoundInteractions = [x.rstrip().split("\t")[:2] for x in open("finalBioGRIDYeastKinaseTFInteractions.tsv","r").readlines()]
+bioGridFoundInteractions = [x.rstrip().split("\t")[:2]+x.rstrip().split("\t")[-3:-2] for x in open("finalBioGRIDYeastKinaseTFInteractions.tsv","r").readlines()]
 
 kinaseTFInteractions = {}
 
-for tf,kinase in bioGridFoundInteractions:
+for tf,kinase,score in bioGridFoundInteractions[1:]:
     if kinase not in kinaseTFInteractions: kinaseTFInteractions[kinase] = {}
-    kinaseTFInteractions[kinase][tf] = "NA"
+    kinaseTFInteractions[kinase][tf] = "BG: "+score
 
 kinaseTFInteractionsBIOGRIDOnly = copy.deepcopy(kinaseTFInteractions)
 
@@ -30,41 +34,58 @@ for line in file:
 
 print("Number of interactions Total: ",sum([len(kinaseTFInteractions[kinase]) for kinase in kinaseTFInteractions]))
 
+outputKinaseTFFile = open("kinaseTFInteractionsWQuantititation.txt","w")
+
 unique2BioGrid = 0
 unique2yeastKID = 0
 scoresYeastKID = []
 scoresShared = []
 for kinase in kinaseTFInteractions:
     for tf in kinaseTFInteractions[kinase]:
-        if kinaseTFInteractions[kinase][tf] == "NA":
+        if str(kinaseTFInteractions[kinase][tf]).startswith("BG:"):
             unique2BioGrid+=1
         elif kinase not in kinaseTFInteractionsBIOGRIDOnly or tf not in kinaseTFInteractionsBIOGRIDOnly[kinase]:
             unique2yeastKID+=1
             scoresYeastKID.append(kinaseTFInteractions[kinase][tf])
         else:
             scoresShared.append(kinaseTFInteractions[kinase][tf])
+	outputKinaseTFFile.write(kinase+" "+tf+" "+str(kinaseTFInteractions[kinase][tf])+"\n")
 
 
 
-print kinaseTFInteractionsBIOGRIDOnly
-print kinaseTFInteractions
+
+
+
 
 print("Number of interactions unqiue to BioGRID: ",unique2BioGrid)
 print("Number of interactions unique to yeastKID: ",unique2yeastKID)
 print("Number of YeastKID interactions: ",len(relevantInteractions))
 print("Number of BioGRID interactions: ",sum([len(kinaseTFInteractionsBIOGRIDOnly[kinase]) for kinase in kinaseTFInteractionsBIOGRIDOnly]))
-plt.hist(scores)
 
 relevantInteractions.sort(key=lambda x:x.split("\t")[-1])
 outfile = open("relevantYeastKIDInteractions.txt","w")
 outfile.write(headers)
 [outfile.write(line) for line in relevantInteractions]
-print(headers)
+
 
 plt.hist(scoresYeastKID, color = "b")
+plt.xlabel("Log Likelihood Score")
+plt.ylabel("Frequency")
+plt.title("YeastKID Only Kinase/Phosphatase TF Interactions Scores")
 plt.figure()
 plt.hist(scoresShared,color = "r")
+plt.xlabel("Log Likelihood Score")
+plt.ylabel("Frequency")
+plt.title("BioGRID,YeastKID Shared Kinase/Phosphatase TF Interactions Scores")
 
+plt.figure()
+plt.hist([len(kinaseTFInteractions[kinase]) for kinase in kinaseTFInteractions])
+plt.xlabel("Number of TFs Interacting with Kinase/Phosphatase")
+plt.ylabel("Frequency")
+plt.title("Distribution of Kinase/Phosphatase Interactions")
+
+print("# of Kinases: ",len(kinaseTFInteractions))
+print("# of TFs: ",len(set(flatten([[x for x in kinaseTFInteractions[kinase]] for kinase in kinaseTFInteractions]))))
 
 plt.show()
 
