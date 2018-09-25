@@ -23,6 +23,7 @@ for line in file:
 
 		relevantInteractions.append(line)
 
+
 relevantInteractions.sort(key = lambda x : x.split("\t")[5])
 
 [outputInteractionFile.write(x) for x in relevantInteractions]

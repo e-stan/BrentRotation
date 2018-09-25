@@ -138,11 +138,19 @@ print(len(kinaseQualityHand))
 plt.figure()
 plt.pie(wedgeSizes,labels = differentKinTypesPresent)
 
+#Get systematic names
+
+common2Syst = {str.lower(x.rstrip().split(",")[0]):str.lower(x.rstrip().split(",")[1]) for x in open("../TFAInferenceCode/YeastCommonAndSystematicGeneNames.csv","r").readlines()[1:]}
+
 file.close()
 
-file = open("finalKinasesToDetermineInteractions.txt","w")
+file = open("finalKinasesToDetermineInteractions2.txt","w")
 file.write("gene type\n")
-[file.write(gene+" "+kinaseQualityHand[gene]+"\n") for gene in kinaseQualityHand]
+for gene in kinaseQualityHand: 
+	try:
+		file.write(gene+" "+kinaseQualityHand[gene]+" "+common2Syst[gene]+"\n")
+	except:
+		file.write(gene+" "+kinaseQualityHand[gene]+"\n")
 file.close()
 
 plt.show()
