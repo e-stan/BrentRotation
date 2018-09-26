@@ -49,3 +49,4 @@ rim11  Kinase Catalytic ymr139w
 sky1  Kinase Catalytic ymr216c
 mkk2  Kinase Catalytic ypl140c
 tpk3  Kinase Catalytic ykl166c
+mck1  Kinase Catalytic ynl307c

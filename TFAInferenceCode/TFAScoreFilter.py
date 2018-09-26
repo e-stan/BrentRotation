@@ -1,6 +1,7 @@
 import numpy as np
 
-file = open("learnedTFAvalQuantile5iteration100.csv","r")
+#file = open("learnedTFAvalQuantile5iteration100.csv","r")
+file = open("learnedTFAval.csv","r")
 delimiter = ","
 matrix = [[float(y) for y in x.split(delimiter)] for x in file.readlines()]
 print(len(matrix[0]))
@@ -44,8 +45,8 @@ print(len(columnsOfInterest))
 print(len(columnsOfInterestNames))
 columnsOfInterestNames.append("wt")
 
-wt = [np.mean([matrix[row][col] for col in [-1,-2,-3]]) for row in range(len(matrix))] #average the last 3 as there is a not a pure WT sample
-matrix = [[matrix[row][col] for col in columnsOfInterest]+[wt[row]] for row in range(len(matrix))]
+wt = [np.mean([matrix[row][col] for col in [-1]]) for row in range(len(matrix))] #average the last 3 as there is a not a pure WT sample
+matrix = [[matrix[row][col] for col in columnsOfInterest]+[wt[row]] for row in range(len(matrix)-1)]
 
 print(len(matrix[0]))
 
@@ -59,14 +60,23 @@ print(len(rowLabels))
 
 #Divide TF activities
 
-matrix = [[np.abs(matrix[row][col]/matrix[row][-1]-1) for col in range(len(matrix[row]))] for row in range(len(matrix))]
+def standardScore(matrix):
+	return [[(matrix[row][col]-np.mean(matrix[row]))/np.std(matrix[row]) for col in range(len(matrix[row]))] for row in range(len(matrix))]
+
+def absoluteFoldChange(matrix):
+	return [[np.abs(matrix[row][col]/matrix[row][-1]-1) for col in range(len(matrix[row]))] for row in range(len(matrix))]
+
+matrix = standardScore(matrix)
+
 print(len(matrix))
 outputFile = open("NormalizedTFAMatrixOfInterest.csv","w")
 outputFile.write("TF")
 [outputFile.write(","+kinase) for kinase in columnsOfInterestNames]
-for row in range(len(matrix)-1):
+for row in range(len(matrix)):
 	outputFile.write('\n'+rowLabels[row])
 	[outputFile.write(","+str(colEntry)) for colEntry in matrix[row]]
+
+
 
 
 
