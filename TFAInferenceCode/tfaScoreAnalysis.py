@@ -27,12 +27,13 @@ for tf in range(len(matrix)):
 print([inter for inter in interactionsFound if interactionsFound[inter] == -1])
 allInteractions.sort(reverse=True)
 alpha = .05 # for standard score
-#alpha = .1 # for absolute fold change
+alpha = .1 # for absolute fold change
 scoreCutoffHigh = allInteractions[int(alpha/2*len(allInteractions))]
 allInteractions.sort()
 scoreCutoffLow = allInteractions[int(alpha/2*len(allInteractions))]
-#scoreCutoffLow = -.01 # for absolute fold change
-print(scoreCutoffHigh,scoreCutoffLow,int(alpha**len(allInteractions)),len(allInteractions))
+scoreCutoffLow = -.01 # for absolute fold change
+alpha=.05
+print(scoreCutoffHigh,scoreCutoffLow,alpha,int(alpha*len(allInteractions)),len(allInteractions))
 
 uniqueInteractions = [inter for inter in interactions]
 #interactionsCodeMap = {inter:code for inter,code in zip(uniqueInteractions,range(len(interactions)))}
@@ -56,7 +57,7 @@ plt.plot([x for x in range(minLogScore,maxLogScore)],[scoreCutoffLow for _ in ra
 
 plt.xlabel("Experimentally Validated Log Likelihood Score")
 plt.ylabel("Standard Activity Score ((x-Mean[X])/Std[X])") #for standard score
-#plt.ylabel("Absolute Fold Change Relative to wt") #for absolute fold change
+plt.ylabel("Absolute Fold Change Relative to wt") #for absolute fold change
 
 
 plt.figure()

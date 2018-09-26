@@ -2,6 +2,7 @@ import numpy as np
 
 #file = open("learnedTFAvalQuantile5iteration100.csv","r")
 file = open("learnedTFAval.csv","r")
+#file = open("learnedTFAvalSignConst.csv","r")
 delimiter = ","
 matrix = [[float(y) for y in x.split(delimiter)] for x in file.readlines()]
 print(len(matrix[0]))
@@ -66,7 +67,7 @@ def standardScore(matrix):
 def absoluteFoldChange(matrix):
 	return [[np.abs(matrix[row][col]/matrix[row][-1]-1) for col in range(len(matrix[row]))] for row in range(len(matrix))]
 
-matrix = standardScore(matrix)
+matrix = absoluteFoldChange(matrix)
 
 print(len(matrix))
 outputFile = open("NormalizedTFAMatrixOfInterest.csv","w")
