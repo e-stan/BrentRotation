@@ -52,20 +52,20 @@ print(len(matrix[0]))
 
 rowLabelFile = "TFListZev.csv"
 
-rowLabels = [str.lower(x.rstrip()) for x in open(rowLabelFile,"r").readlines()]
+rowLabels = [str.lower(x.rstrip())[1:-1] for x in open(rowLabelFile,"r").readlines()]
 
 print(len(rowLabels))
 
 
 #Divide TF activities
 
-matrix = [[matrix[row][col]/matrix[row][-1] for col in range(len(matrix[row]))] for row in range(len(matrix))]
+matrix = [[np.abs(matrix[row][col]/matrix[row][-1]-1) for col in range(len(matrix[row]))] for row in range(len(matrix))]
 print(len(matrix))
 outputFile = open("NormalizedTFAMatrixOfInterest.csv","w")
 outputFile.write("TF")
 [outputFile.write(","+kinase) for kinase in columnsOfInterestNames]
 for row in range(len(matrix)-1):
-	outputFile.write("\n"+rowLabels[row])
+	outputFile.write('\n'+rowLabels[row])
 	[outputFile.write(","+str(colEntry)) for colEntry in matrix[row]]
 
 
