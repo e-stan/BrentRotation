@@ -1,6 +1,7 @@
 import pandas
 import matplotlib.pyplot as plt
 import numpy
+import pickle
 
 #read in data
 
@@ -97,6 +98,7 @@ for column,gene in zip(columnsOfInterestFullName,columnsOfInterest):
 	elif str(df.at["dtype",column]) == "A": dataOfInterest[gene]["expression"] = {key:float(value) for key,value in df2[column].to_dict().items()} #log2(wt)
 
 dataOfInterest = {key:value for key,value in dataOfInterest.items() if key in kinaseTypeMap}
+pickle.dump(dataOfInterest,open("geneExpressionForKinaseOfInterest.pkl","wb"))
 plt.hist([dataOfInterest[gene]["ratio"][gene] for gene in dataOfInterest],bins = 25)
 plt.xlabel("M (Log2(Mutant/WT)) Ratio For KO Gene")
 plt.ylabel("Frequency")
