@@ -4,8 +4,7 @@ import scipy.stats as stats
 import pickle
 
 expectedResults = [x.rstrip().split()[:3] for x in open("../SelectedData/kinaseTFInteractionsWQuantititation.txt","r").readlines()[1:]]
-common2SystematicName = {str.lower(x.rstrip().split(",")[0]):str.lower(x.rstrip().split(",")[1]) for x in open("YeastCommonAndSystematicGeneNames.csv","r").readlines()[1:]}
-systematic2Common = {value:key for key,value in common2SystematicName.items()}
+
 
 geneExpression = pickle.load(open("geneExpressionForKinaseOfInterest.pkl","rb"))
 geneExpression = {common2SystematicName[key]:value for key,value in geneExpression.items() if key in common2SystematicName}

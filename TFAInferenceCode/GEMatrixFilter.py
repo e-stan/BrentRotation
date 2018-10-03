@@ -60,6 +60,21 @@ temp = common2SystematicKinase[columnsOfInterest[0]]
 dataOfInterest["wt"] = {}
 dataOfInterest["wt"]["expression"] = {gene:dataOfInterest[temp]["expression"][gene]/(2**dataOfInterest[temp]["ratio"][gene]) for gene in dataOfInterest[temp]["ratio"]}
 
+allData = {}
+for column in columnsTotal:
+	if column not in allData: allData[column] = {}
+	if str(df.at["dtype",column]) == "p_value": allData[gene]["p-value"] = {key:float(value) for key,value in df2[column].to_dict().items()}
+	elif str(df.at["dtype",column]) == "M": allData[gene]["ratio"] = {key:float(value) for key,value in df2[column].to_dict().items()} #log2(mutant/WT)
+	elif str(df.at["dtype",column]) == "A": allData[gene]["expression"] = {key:float(value) for key,value in df2[column].to_dict().items()} #log2(wt)
+
+temp = columnsTotal[-1]
+
+allData[temp]["expression"] = {gene:allData[temp]["expression"][gene]/(2**allData[temp]["ratio"][gene]) for gene in allData[temp]["ratio"]}
+
+allData = {kinase:{key:value for key,value in allData[kinase]["expression"].items()} for kinase in allData}
+
+
+
 dataOfInterest = {kinase:{key:value for key,value in dataOfInterest[kinase]["expression"].items()} for kinase in dataOfInterest}
 
 kinaseNames = pickle.load(open("kinaseNamesOfInterest.pkl","rb"))
@@ -80,6 +95,20 @@ for row in GEMatrix[1:]:
 	for val in row[1:]:
 		file.write(","+str(val))
 
+GEMatrix = [[] for _ in geneNames]
+
+for x in range(len(geneNames)):
+	GEMatrix[x] = [allData[kinase][geneNames[x]] for kinase in columnsTotal]
+
+
+file = open("GEAll.csv","w")
+
+file.write(str(GEMatrix[0][0]))
+[file.write(","+str(val)) for val in GEMatrix[0][1:]]
+for row in GEMatrix[1:]:
+	file.write("\n"+str(row[0]))
+	for val in row[1:]:
+		file.write(","+str(val))
 
 
 
