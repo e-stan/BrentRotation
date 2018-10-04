@@ -4,15 +4,17 @@ import numpy as np
 import pickle
 import copy
 
+
 class TFAHelper():
 
 	def __init__(self,TFAWholeMatrix, *args, **kwargs):
 		self.common2SystematicName = {str.lower(x.rstrip().split(",")[0]):str.lower(x.rstrip().split(",")[1]) for x in open("YeastCommonAndSystematicGeneNames.csv","r").readlines()[1:]}
 		self.systematic2Common = {value:key for key,value in self.common2SystematicName.items()}
-		self.TFAWholeMatrix = TFAWholeMatrix
+		self.TFAWholeMatrix = copy.deepcopy(TFAWholeMatrix)
 		pass
 
-	def dense_optimize(self,c, A,b,rhsUB, lb, ub, vtype,
+	@staticmethod
+	def dense_optimize(c, A,b,rhsUB, lb, ub, vtype,
 	                   solution,direction):
 		
 		#THIS CODE IS BASED OFF OF http://www.gurobi.com/documentation/8.0/examples/mip1_py.html
@@ -68,8 +70,8 @@ class TFAHelper():
 	  else:
 	    return False
 
-
-	def TFVASingleCondition(self,CS,GE,TFAOriginal,iterLimit = 20):
+	@staticmethod
+	def TFVASingleCondition(CS,GE,TFAOriginal,iterLimit = 20):
 		"""
 			Perform TF activity variability analysis by sequentially maximimizing and minimizing
 			each TF's activity individually subjust to the contraint that the TF activity solves 
@@ -77,7 +79,7 @@ class TFAHelper():
 		"""
 
 		pGE = np.dot(CS,TFAOriginal).tolist() #determine GE vector current facotrization solves 
-		meanError = standardError(pGE,GE) #compute error between current factorization and true expression
+		meanError = TFAHelper.standardError(pGE,GE) #compute error between current factorization and true expression
 
 		lb = [0 for _ in range(len(CS[0]))]  #form lower bound for TF activity
 		lb[-1] = TFAOriginal[-1][0]-TFAOriginal[-1][0]/100 #fix pseudo TF activity 
@@ -99,12 +101,12 @@ class TFAHelper():
 					qualityCoefficient+=.1
 					sol = [-1 for _ in range(len(CS[0]))]
 					rhsUB = [qualityCoefficient for _ in range(len(CS))]
-					success = dense_optimize(c,CS,pGE,rhsUB,lb,ub,vtype,sol,direction)
+					success = TFAHelper.dense_optimize(c,CS,pGE,rhsUB,lb,ub,vtype,sol,direction)
 					iter+=1
 				if success: 
 					tfRange[tf].append(sol[tf])
-					temp = np.dot(CS,rowv2colv(sol)).tolist()
-					tempError = standardError(temp,GE)
+					temp = np.dot(CS,TFAHelper.rowv2colv(sol)).tolist()
+					tempError = TFAHelper.standardError(temp,GE)
 					algorithmResult[tf].append(tempError-meanError)
 				else:
 					tfRange[tf].append(TFAOriginal[tf][0])
@@ -114,8 +116,8 @@ class TFAHelper():
 		meanTFActivities = [np.mean(tf) for tf in tfRange]
 		return tfRange,meanTFActivities,algorithmResult
 
-
-	def TFVA(self,CS,GE,TFAOriginal,iterLimit=20,write=True,outfile = "TFVAResult"):
+	@staticmethod
+	def TFVA(CS,GE,TFAOriginal,iterLimit=20,write=True,outfile = "TFVAResult"):
 		"""
 			Perform the variable TFA analysis on entire TFA matrix with complete GE matrix. The results for the
 			range of possible values as well as the difference in factorization qualtiy are written to pickle files
@@ -128,7 +130,7 @@ class TFAHelper():
 		for col in range(len(TFAOriginal[0])):
 			TFA = [[row[col]] for row in TFAOriginal]
 			singelGE = [[row[col]] for row in GE]
-			tfRange,meanTFActivities,algorithmResult = TFVASingleCondition(CS,singelGE,TFA,iterLimit)
+			tfRange,meanTFActivities,algorithmResult = TFAHelper.TFVASingleCondition(CS,singelGE,TFA,iterLimit)
 
 			tempTFA = np.transpose(TFAVariable).tolist()
 			tempTFA[col] = meanTFActivities
@@ -143,18 +145,15 @@ class TFAHelper():
 			TFVAQuality = np.transpose(tempTFVAQuality,(1, 0, 2)).tolist()
 
 		if write:
-			writeMatrix2csv(TFAVariable,open(outfile+".csv","w"))
+			TFAHelper.writeMatrix2csv(TFAVariable,open(outfile+".csv","w"))
 			pickle.dump(TFVARange,open(outfile+"Range.pkl","wb"))
 			pickle.dump(TFVAQuality,open(outfile+"Quality.pkl","wb"))
 
 
 		return TFAVariable,TFVARange,TFVAQuality
-
-
-
 		
-
-	def rowv2colv(self,a):
+	@staticmethod
+	def rowv2colv(a):
 			"""
 			Transpose a 1D vector
 			"""
@@ -164,13 +163,15 @@ class TFAHelper():
 			except:
 				return [[e] for e in a]
 
-	def standardError(self,a,b):
+	@staticmethod
+	def standardError(a,b):
 		"""
 		Compute standard Error
 		"""
 		return np.mean([abs(x[0]-y[0]) for x,y in zip(a,b)])
 
-	def writeMatrix2csv(self,matrix,file):
+	@staticmethod
+	def writeMatrix2csv(matrix,file):
 		"""
 		Write a nested list of list to a csv file
 		"""
@@ -220,7 +221,8 @@ class TFAHelper():
 			interactionPvals[inter] = index/number
 		return interactionPvals
 
-	def flatten(self,l):
+	@staticmethod
+	def flatten(l):
 		return [item for sublist in l for item in sublist]
 
 	def catagorizeInteractionsForSignificance(self,alpha,interactions,tailed=True):
@@ -246,3 +248,42 @@ class TFAHelper():
 			xcoords.append(float(tf)/numberOfTFs)
 			ycoords.append(float(count)/len(interactionsFound))
 		return xcoords,ycoords
+
+	@staticmethod
+	def dist(A,B,tol=3):
+		A = [np.round(a,tol) for a in A]
+		B = [np.round(b,tol) for b in B]
+
+		def sgn(a):
+			if a > 0: return 1
+			elif a < 0: return -1
+			else: return 0
+
+		mA = np.round(np.mean(A),tol)
+		mB = np.round(np.mean(B),tol)
+		rA = max(A) - mA
+		rB = max(B) - mB
+
+		if rB-rA == 0:
+			return mB - mA + 2 * sgn(mB-mA)
+		elif mA != mB:
+			return (mB - mA)/(rB-rA) + sgn(mB-mA)
+		else:
+			return (rB - rA)/max([rB,rA])
+
+
+	def rankingChangeV(self,varMatrix):
+		tempMat = np.transpose(varMatrix,(1,0,2)).tolist()
+		for x in range(len(tempMat)):
+			temp = list(tempMat[x])
+			temp = [abs(TFAHelper.dist(temp[i],varMatrix[i][-1])) for i in range(len(temp))]
+			indices = range(len(temp))
+			indices.sort(key=lambda x:temp[x],reverse=True)
+			tempMat[x] = indices
+		return np.transpose(tempMat).tolist()
+
+	def distFromWTRange(self,varMatrix):
+		tempMat = copy.deepcopy(varMatrix)
+		for x in range(len(varMatrix)):
+			tempMat[x] = [np.abs(TFAHelper.dist(tempMat[x][col],tempMat[x][-1])) for col in range(len(varMatrix[x]))]
+		return tempMat
