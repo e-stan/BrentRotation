@@ -250,7 +250,7 @@ class TFAHelper():
 		return xcoords,ycoords
 
 	@staticmethod
-	def dist(A,B,tol=3):
+	def dist(A,B,tol=5):
 		A = [np.round(a,tol) for a in A]
 		B = [np.round(b,tol) for b in B]
 
@@ -287,3 +287,13 @@ class TFAHelper():
 		for x in range(len(varMatrix)):
 			tempMat[x] = [np.abs(TFAHelper.dist(tempMat[x][col],tempMat[x][-1])) for col in range(len(varMatrix[x]))]
 		return tempMat
+
+	@staticmethod
+	def transformScoredMatrixToRank(matrix):
+		tempMat = np.transpose(matrix).tolist()
+		for x in range(len(tempMat)):
+			temp = list(tempMat[x])
+			indices = range(len(temp))
+			indices.sort(key=lambda x:temp[x],reverse=True)
+			tempMat[x] = indices
+		return np.transpose(tempMat).tolist()
