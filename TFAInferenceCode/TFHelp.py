@@ -3,6 +3,8 @@ from gurobipy import *
 import numpy as np
 import pickle
 import copy
+from multiprocessing import Process, Queue
+import time
 
 
 class TFAHelper():
@@ -151,6 +153,100 @@ class TFAHelper():
 
 
 		return TFAVariable,TFVARange,TFVAQuality
+
+	@staticmethod
+	def TFVAMP(CS,GE,TFAOriginal,columns,q,iterLimit=20):
+		"""
+			Perform the variable TFA analysis on entire TFA matrix with complete GE matrix. The results for the
+			range of possible values as well as the difference in factorization qualtiy are written to pickle files
+			with the mean TFA activity written to a csv
+		"""
+
+		TFAVariable = list(TFAOriginal)
+		TFVARange = [[[col,col] for col in row] for row in TFAOriginal]
+		TFVAQuality = [[[-1,-1] for col in row] for row in TFVARange]
+		for col in range(len(TFAOriginal[0])):
+			TFA = [[row[col]] for row in TFAOriginal]
+			singelGE = [[row[col]] for row in GE]
+			tfRange,meanTFActivities,algorithmResult = TFAHelper.TFVASingleCondition(CS,singelGE,TFA,iterLimit)
+
+			tempTFA = np.transpose(TFAVariable).tolist()
+			tempTFA[col] = meanTFActivities
+			TFAVariable = np.transpose(tempTFA).tolist()
+
+			tempTFVARange = np.transpose(TFVARange,(1, 0, 2)).tolist()
+			tempTFVARange[col] = tfRange
+			TFVARange = np.transpose(tempTFVARange,(1, 0, 2)).tolist()
+
+			tempTFVAQuality = np.transpose(TFVAQuality,(1, 0, 2)).tolist()
+			tempTFVAQuality[col] = algorithmResult
+			TFVAQuality = np.transpose(tempTFVAQuality,(1, 0, 2)).tolist()
+
+
+		q.put([columns,TFAVariable,TFVARange,TFVAQuality])
+
+	@staticmethod
+	def TFVAMPRun(CS,GE,TFAOriginal,iterLimit=20,write=True,outfile = "TFVAResult",numCores = 2):
+		colsPerProc = int(len(GE[0])/numCores)
+		print(colsPerProc)
+		q = Queue()
+		startCol = 0
+		processes = []
+		TFAVariable = [[col for col in row] for row in TFAOriginal]
+		TFARange = [[[-1,-1] for col in row] for row in TFAOriginal]
+		TFAQuality = [[[-1,-1] for col in row] for row in TFAOriginal]
+
+		for p in range(numCores):
+			if p == numCores-1:
+				tempGE = [row[startCol:] for row in GE]
+				tempTFA = [row[startCol:] for row in TFAOriginal]
+				endCol = -1
+			else:
+				endCol = startCol+colsPerProc
+				tempGE = [row[startCol:endCol] for row in GE]
+				tempTFA = [row[startCol:endCol] for row in TFAOriginal]
+			p = Process(target = TFAHelper.TFVAMP,args=(CS,tempGE,tempTFA,[startCol,endCol],q))
+			p.start()
+			processes.append(p)
+			endCol = startCol
+		while any(x.is_alive() for x in processes): time.sleep(15)
+		while not q.empty():
+			[columns,TFAVar,TFVARan,TFVAQual] = q.get()
+			if columns[1] == -1:
+				TFAVariable = np.transpose(TFAVariable)
+				TFAVariable[columns[0]:] = np.transpose(TFAVar)
+				TFAVariable = np.transpose(TFAVariable).tolist()
+
+				TFARange = np.transpose(TFARange,(1, 0, 2)).tolist()
+				TFARange[columns[0]:] = np.transpose(TFVARan,(1,0,2))
+				TFARange = np.transpose(TFARange,(1, 0, 2)).tolist()
+
+				TFAQuality = np.transpose(TFAQuality,(1, 0, 2)).tolist()
+				TFAQuality[columns[0]:] = np.transpose(TFVAQual,(1,0,2))
+				TFAQuality = np.transpose(TFAQuality,(1, 0, 2)).tolist()
+			else:
+				TFAVariable = np.transpose(TFAVariable)
+				TFAVariable[columns[0]:columns[1]] = np.transpose(TFAVar)
+				TFAVariable = np.transpose(TFAVariable).tolist()
+
+				TFARange = np.transpose(TFARange,(1, 0, 2)).tolist()
+				TFARange[columns[0]:columns[1]] = np.transpose(TFVARan,(1,0,2))
+				TFARange = np.transpose(TFARange,(1, 0, 2)).tolist()
+
+				TFAQuality = np.transpose(TFAQuality,(1, 0, 2)).tolist()
+				TFAQuality[columns[0]:columns[1]] = np.transpose(TFVAQual,(1,0,2))
+				TFAQuality = np.transpose(TFAQuality,(1, 0, 2)).tolist()
+
+		if write:
+			TFAHelper.writeMatrix2csv(TFAVariable,open(outfile+".csv","w"))
+			pickle.dump(TFARange,open(outfile+"Range.pkl","wb"))
+			pickle.dump(TFAQuality,open(outfile+"Quality.pkl","wb"))
+
+		return TFAVariable,TFARange,TFAQuality
+
+
+
+
 		
 	@staticmethod
 	def rowv2colv(a):
@@ -264,10 +360,10 @@ class TFAHelper():
 		rA = max(A) - mA
 		rB = max(B) - mB
 
-		if rB-rA == 0:
+		if rB+rA == 0:
 			return mB - mA + 2 * sgn(mB-mA)
 		elif mA != mB:
-			return (mB - mA)/(rB-rA) + sgn(mB-mA)
+			return (mB - mA)/(rB+rA) + sgn(mB-mA)
 		else:
 			return (rB - rA)/max([rB,rA])
 
@@ -282,7 +378,8 @@ class TFAHelper():
 			tempMat[x] = indices
 		return np.transpose(tempMat).tolist()
 
-	def distFromWTRange(self,varMatrix):
+	@staticmethod
+	def distFromWTRange(varMatrix):
 		tempMat = copy.deepcopy(varMatrix)
 		for x in range(len(varMatrix)):
 			tempMat[x] = [np.abs(TFAHelper.dist(tempMat[x][col],tempMat[x][-1])) for col in range(len(varMatrix[x]))]
@@ -297,3 +394,16 @@ class TFAHelper():
 			indices.sort(key=lambda x:temp[x],reverse=True)
 			tempMat[x] = indices
 		return np.transpose(tempMat).tolist()
+
+	@staticmethod
+	def BinDistMatrixV(distMatrix):
+		def discrete(val):
+			if val < .01:
+				return 0
+			elif val <= 1:
+				return 1
+			elif val <= 2:
+				return 2
+			else :
+				return 3
+		return [[discrete(col) for col in row] for row in distMatrix]
