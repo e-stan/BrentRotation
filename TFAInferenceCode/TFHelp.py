@@ -12,7 +12,6 @@ def TFVAMP(CS, GE, TFAOriginal, columns, q, iterLimit=20):
 		range of possible values as well as the difference in factorization qualtiy are written to pickle files
 		with the mean TFA activity written to a csv
 	"""
-
 	TFAVariable = list(TFAOriginal)
 	TFVARange = [[[col, col] for col in row] for row in TFAOriginal]
 	TFVAQuality = [[[-1, -1] for col in row] for row in TFVARange]
@@ -35,10 +34,11 @@ def TFVAMP(CS, GE, TFAOriginal, columns, q, iterLimit=20):
 
 	q.put([columns, TFAVariable, TFVARange, TFVAQuality])
 
+	return 0
+
 
 def TFVAMPRun(CS, GE, TFAOriginal, iterLimit=20, write=True, outfile="TFVAResult", numCores=2):
 	colsPerProc = int(len(GE[0]) / numCores)
-	print(colsPerProc)
 	q = Queue()
 	startCol = 0
 	processes = []
@@ -58,39 +58,50 @@ def TFVAMPRun(CS, GE, TFAOriginal, iterLimit=20, write=True, outfile="TFVAResult
 		p = Process(target=TFVAMP, args=(CS, tempGE, tempTFA, [startCol, endCol], q))
 		p.start()
 		processes.append(p)
-		endCol = startCol
-	while any(x.is_alive() for x in processes): time.sleep(15)
-	while not q.empty():
-		[columns, TFAVar, TFVARan, TFVAQual] = q.get()
-		if columns[1] == -1:
-			TFAVariable = np.transpose(TFAVariable)
-			TFAVariable[columns[0]:] = np.transpose(TFAVar)
-			TFAVariable = np.transpose(TFAVariable).tolist()
+		startCol = endCol
 
-			TFARange = np.transpose(TFARange, (1, 0, 2)).tolist()
-			TFARange[columns[0]:] = np.transpose(TFVARan, (1, 0, 2))
-			TFARange = np.transpose(TFARange, (1, 0, 2)).tolist()
+	while True:
+		running = any(p.is_alive() for p in processes)
+		while not q.empty():
+			[columns, TFAVar, TFVARan, TFVAQual] = q.get()
+			if columns[1] == -1:
+				TFAVariable = np.transpose(TFAVariable)
+				TFAVariable[columns[0]:] = np.transpose(TFAVar)
+				TFAVariable = np.transpose(TFAVariable).tolist()
 
-			TFAQuality = np.transpose(TFAQuality, (1, 0, 2)).tolist()
-			TFAQuality[columns[0]:] = np.transpose(TFVAQual, (1, 0, 2))
-			TFAQuality = np.transpose(TFAQuality, (1, 0, 2)).tolist()
-		else:
-			TFAVariable = np.transpose(TFAVariable)
-			TFAVariable[columns[0]:columns[1]] = np.transpose(TFAVar)
-			TFAVariable = np.transpose(TFAVariable).tolist()
+				TFARange = np.transpose(TFARange, (1, 0, 2)).tolist()
+				TFARange[columns[0]:] = np.transpose(TFVARan, (1, 0, 2))
+				TFARange = np.transpose(TFARange, (1, 0, 2)).tolist()
 
-			TFARange = np.transpose(TFARange, (1, 0, 2)).tolist()
-			TFARange[columns[0]:columns[1]] = np.transpose(TFVARan, (1, 0, 2))
-			TFARange = np.transpose(TFARange, (1, 0, 2)).tolist()
+				TFAQuality = np.transpose(TFAQuality, (1, 0, 2)).tolist()
+				TFAQuality[columns[0]:] = np.transpose(TFVAQual, (1, 0, 2))
+				TFAQuality = np.transpose(TFAQuality, (1, 0, 2)).tolist()
+			else:
+				TFAVariable = np.transpose(TFAVariable)
+				TFAVariable[columns[0]:columns[1]] = np.transpose(TFAVar)
+				TFAVariable = np.transpose(TFAVariable).tolist()
 
-			TFAQuality = np.transpose(TFAQuality, (1, 0, 2)).tolist()
-			TFAQuality[columns[0]:columns[1]] = np.transpose(TFVAQual, (1, 0, 2))
-			TFAQuality = np.transpose(TFAQuality, (1, 0, 2)).tolist()
+				TFARange = np.transpose(TFARange, (1, 0, 2)).tolist()
+				TFARange[columns[0]:columns[1]] = np.transpose(TFVARan, (1, 0, 2))
+				TFARange = np.transpose(TFARange, (1, 0, 2)).tolist()
+
+				TFAQuality = np.transpose(TFAQuality, (1, 0, 2)).tolist()
+				TFAQuality[columns[0]:columns[1]] = np.transpose(TFVAQual, (1, 0, 2))
+				TFAQuality = np.transpose(TFAQuality, (1, 0, 2)).tolist()
+		if not running:
+			break
+		
 
 	if write:
-		TFAHelper.writeMatrix2csv(TFAVariable, open(outfile + ".csv", "w"))
-		pickle.dump(TFARange, open(outfile + "Range.pkl", "wb"))
-		pickle.dump(TFAQuality, open(outfile + "Quality.pkl", "wb"))
+		file = open(outfile + ".csv", "w")
+		TFAHelper.writeMatrix2csv(TFAVariable, file)
+		file.close()
+		file = open(outfile + "Range.pkl", "wb")
+		pickle.dump(TFARange, file)
+		file.close()
+		file =  open(outfile + "Quality.pkl", "wb")
+		pickle.dump(TFAQuality,file)
+		file.close()
 
 	return TFAVariable, TFARange, TFAQuality
 
@@ -146,7 +157,7 @@ class TFAHelper():
 	  model.setObjective(obj,direction)
 
 	  # Solve
-	  #model.setParam("OutputFlag",False)
+	  model.setParam("OutputFlag",False)
 	  model.optimize()
 
 	  # Write model to a file
