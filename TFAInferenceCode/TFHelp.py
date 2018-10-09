@@ -5,6 +5,7 @@ import pickle
 import copy
 from multiprocessing import Process, Queue
 import time
+import random
 
 def TFVAMP(CS, GE, TFAOriginal, columns, q, iterLimit=20):
 	"""
@@ -334,7 +335,12 @@ class TFAHelper():
 		return significantFoundInteractions,insignificantInteractions
 
 	def generateRandomMatrix(self,matrix):
-		return np.random.normal(np.mean(self.flatten(self.TFAWholeMatrix)),np.std(self.flatten(self.TFAWholeMatrix)),(len(matrix),len(matrix[0]))).tolist()
+		allScores = self.flatten(matrix)
+		random.shuffle(allScores)
+		colLength = len(matrix[0])
+		rowLength = len(matrix)
+		return [[allScores[row*colLength+col] for col in range(colLength)] for row in range(rowLength)]
+		#return np.random.normal(np.mean(self.flatten(self.TFAWholeMatrix)),np.std(self.flatten(self.TFAWholeMatrix)),(len(matrix),len(matrix[0]))).tolist()
 
 
 	def expectedInteractionFallInRankingLevel(self,interactionsFound,numberOfTFs):
