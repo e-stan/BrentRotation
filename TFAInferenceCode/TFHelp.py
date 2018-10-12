@@ -290,13 +290,12 @@ class TFAHelper():
 		return [[np.abs(np.log2(matrix[row][col]/matrix[row][-1])) for col in range(len(matrix[row]))] for row in range(len(matrix))]
 
 	def rankingChange(self,matrix):
-		tempMat = np.transpose(matrix)
+		tempMat = np.transpose(self.absoluteLog2FoldChange(matrix))
 		for x in range(len(tempMat)):
 			temp = list(tempMat[x])
-			temp = [abs(np.log2(temp[i]/matrix[i][-1])) for i in range(len(temp))]
 			indices = range(len(temp))
 			indices.sort(key=lambda x:temp[x],reverse=True)
-			tempMat[x] = indices
+			tempMat[x] = [indices.index(tf) for tf in range(len(temp))]
 		return np.transpose(tempMat).tolist()
 
 	def valueRelative2Max(self,matrix):
@@ -385,7 +384,7 @@ class TFAHelper():
 			temp = [abs(TFAHelper.dist(temp[i],varMatrix[i][-1])) for i in range(len(temp))]
 			indices = range(len(temp))
 			indices.sort(key=lambda x:temp[x],reverse=True)
-			tempMat[x] = indices
+			tempMat[x] = [indices.index(tf) for tf in range(len(temp))]
 		return np.transpose(tempMat).tolist()
 
 	@staticmethod
