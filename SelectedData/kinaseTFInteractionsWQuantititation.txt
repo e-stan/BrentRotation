@@ -1,18 +1,53 @@
-ypl140c ydr213w 1.60644
-ypl140c yhr084w 1.60644
-yor061w ykl185w 1.60644
-yor061w yhl020c 6.61503
-yor061w yil131c 2.06912
-yor061w ylr403w 2.27298
-yor061w yfr034c 3.31273
-ybl016w yhr084w 5.020541
+ynl307c yjl110c BG: -
+ynl307c ynl027w BG: -
+yfr014c ypl139c 1.2052
+yfr014c ynl027w 1.2052
+yfr014c ypr065w 1.60644
+yhr079c yfl031w BG: -
+ynl154c ynl027w BG: -
+yml057w ynl027w BG: -
+ydr466w ylr228c BG: -
+ymr139w ynl199c 2.06912
+yjl187c ynl027w BG: -
+yil035c ylr403w 4.3421
+yil035c yhl020c 6.61503
+yil035c yil131c 2.06912
+yil035c yfr034c 3.31273
+ydr283c yel009c BG: -
+ykl126w yjl056c 1.60644
+ydr507c ynl027w BG: -
+ylr362w yfr034c BG: -
+ybr059c ynl027w BG: -
+yhr082c ypl177c 1.384798
+yhr082c yfl031w 1.2052
+yhr082c ynl027w 1.384798
+yjr066w yjl110c BG: -
+yjr066w ykr034w BG: -
+yjr066w ylr403w BG: -
+ygr040w yhr084w BG: -
+ypl141c ynl027w BG: -
+yjl141c ylr256w BG: 0.876
+yhr135c yfl031w BG: -
+yhr135c ynl027w BG: -
+yhr135c yml007w BG: -
+yhr135c yfr034c BG: -
+yhr135c ylr256w BG: -
+yhr135c ynl167c BG: -
+yhr135c yjl110c BG: -
+yhr135c ynl199c BG: -
+ykl166c yhl020c 1.2052
+ykl166c ylr403w 3.31273
+yhr030c ynl167c BG: -
+yhr030c ynl027w BG: -
+yhr030c yil101c 1.60644
+yhr030c yhr084w 2.06912
+ygl158w yhl020c BG: -
 ykl139w ykl185w 1.60644
 ykl139w yjl056c 1.60644
 ykl139w ynl027w 0.0388082
 ykl139w ylr403w 2.06912
 ykl139w yjr060w 1.60644
-ynl307c yjl110c BG: -
-ynl307c ynl027w BG: -
+ycr073c yhl020c BG: -
 ydr477w ynl027w 2.96066
 ydr477w ynl068c 1.60644
 ydr477w yfr034c 2.27298
@@ -20,8 +55,31 @@ ydr477w ycr065w BG: -
 ydr477w yol108c 2.27298
 ydr477w yjl110c 1.2052
 ydr477w ypl248c 2.055379
-ylr362w yfr034c BG: -
-yhr079c yfl031w BG: -
+yal017w yjl110c BG: -
+ylr096w ynl027w BG: -
+ylr433c ycr065w BG: -
+ylr433c ynl027w BG: -
+ylr433c yhr084w BG: -
+ymr216c ypl139c 1.2052
+ymr216c ynl027w 4.51793
+yol128c ynl027w BG: -
+ygl180w yjl110c BG: -
+ygl180w ynl027w BG: -
+ygl180w yfr034c BG: -
+ygl180w yml007w BG: -
+yjl106w ynl027w BG: -
+yjl106w yhr124w BG: -
+yjl106w ydr310c BG: -
+ycl024w ynl027w BG: -
+ypl140c ydr213w 1.60644
+ypl140c yhr084w 1.60644
+ydl101c ypl177c 1.2052
+ybl016w yhr084w 5.020541
+yor061w ylr403w 2.27298
+yor061w ykl185w 1.60644
+yor061w yhl020c 6.61503
+yor061w yil131c 2.06912
+yor061w yfr034c 3.31273
 ypl031c ynl027w BG: -
 ypl031c ypl139c BG: -
 ypl031c yfr034c BG: -
@@ -29,30 +87,15 @@ ypl031c ykl185w BG: -
 ypl031c yhl020c BG: -
 ypl031c yel009c BG: -
 ypl031c ydr146c BG: -
-yhr082c ypl177c 1.384798
-yhr082c yfl031w 1.2052
-yhr082c ynl027w 1.384798
-ydl101c ypl177c 1.2052
-ykl166c yhl020c 1.2052
-ykl166c ylr403w 3.31273
+yjl164c yjl110c BG: -
+yjl164c ynl167c BG: -
+yjl164c ynl027w BG: -
+yjl164c yfr034c BG: -
+ygl179c ypl139c BG: -
+ygl179c ynl027w BG: -
 yhl007c ynl027w 1.2052
-ykl126w yjl056c 1.60644
 yjr059w ynl068c 1.60644
 yjr059w ynl167c 1.2052
-yhr030c ynl167c BG: -
-yhr030c ynl027w BG: -
-yhr030c yil101c 1.60644
-yhr030c yhr084w 2.06912
-ymr216c ypl139c 1.2052
-ymr216c ynl027w 4.51793
-ymr139w ynl199c 2.06912
 ylr113w ynl167c 16.63632
 ylr113w ygl071w BG: -
 ylr113w yfl031w 1.60644
-yfr014c ypl139c 1.2052
-yfr014c ynl027w 1.2052
-yfr014c ypr065w 1.60644
-yil035c yhl020c 6.61503
-yil035c yil131c 2.06912
-yil035c ylr403w 4.3421
-yil035c yfr034c 3.31273

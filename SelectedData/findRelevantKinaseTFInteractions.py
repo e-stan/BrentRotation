@@ -2,7 +2,7 @@
 bioGridFile = "BIOGRID-ALL-3.4.164.tab2.txt"
 bioGridFile = "BIOGRID-ORGANISM-Saccharomyces_cerevisiae_S288c-3.4.164.tab2.txt"
 zevTFFile = "TFListZev.txt"
-kinaseListFile = "finalKinasesToDetermineInteractions.txt"
+kinaseListFile = "finalKinasesToDetermineInteractions2.txt"
 
 
 def flatten(l):

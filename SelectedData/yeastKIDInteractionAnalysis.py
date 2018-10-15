@@ -44,18 +44,13 @@ for kinase in kinaseTFInteractions:
     for tf in kinaseTFInteractions[kinase]:
         if str(kinaseTFInteractions[kinase][tf]).startswith("BG:"):
             unique2BioGrid+=1
+            print(kinase,tf)
         elif kinase not in kinaseTFInteractionsBIOGRIDOnly or tf not in kinaseTFInteractionsBIOGRIDOnly[kinase]:
             unique2yeastKID+=1
             scoresYeastKID.append(kinaseTFInteractions[kinase][tf])
         else:
             scoresShared.append(kinaseTFInteractions[kinase][tf])
 	outputKinaseTFFile.write(kinase+" "+tf+" "+str(kinaseTFInteractions[kinase][tf])+"\n")
-
-
-
-
-
-
 
 print("Number of interactions unqiue to BioGRID: ",unique2BioGrid)
 print("Number of interactions unique to yeastKID: ",unique2yeastKID)

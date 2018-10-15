@@ -5,7 +5,9 @@ import pickle
 
 #read in data
 
-filename = "deleteome_responsive_mutants_controls.txt"
+#filename = "deleteome_responsive_mutants_controls.txt"
+filename = "deleteome_all_mutants_controls.tsv"
+
 
 df = pandas.read_csv(filename,sep="\t",low_memory=False)
 
@@ -39,50 +41,6 @@ print(len(set(columnsOfInterest)))# (81 kinases/proteases)
 print(len(set(list(columnsTotal)))) #this is slightly off from 700 due to the following  (703)
 
 
-"""
-These do not follow the gene-del vs. wt pattern: 
-
-hpa1-del-matA vs. wt-matA
-hpa1-del-matA vs. wt-matA.1
-hpa1-del-matA vs. wt-matA.2
-nup133-del-matA vs. wt-matA
-nup133-del-matA vs. wt-matA.1
-nup133-del-matA vs. wt-matA.2
-bre2-del-matA vs. wt-matA
-bre2-del-matA vs. wt-matA.1
-bre2-del-matA vs. wt-matA.2
-swd1-del-matA vs. wt-matA
-swd1-del-matA vs. wt-matA.1
-swd1-del-matA vs. wt-matA.2
-spp1-del-matA vs. wt-matA
-spp1-del-matA vs. wt-matA.1
-spp1-del-matA vs. wt-matA.2
-set1-del-matA vs. wt-matA
-set1-del-matA vs. wt-matA.1
-set1-del-matA vs. wt-matA.2
-hfi1-del-matA vs. wt-matA
-hfi1-del-matA vs. wt-matA.1
-hfi1-del-matA vs. wt-matA.2
-swd3-del-matA vs. wt-matA
-swd3-del-matA vs. wt-matA.1
-swd3-del-matA vs. wt-matA.2
-sdc1-del-matA vs. wt-matA
-sdc1-del-matA vs. wt-matA.1
-sdc1-del-matA vs. wt-matA.2
-ymr031c vs. wt
-ymr031c vs. wt.1
-ymr031c vs. wt.2
-wt-matA vs wt
-wt-matA vs wt.1
-wt-matA vs wt.2
-wt-by4743 vs. wt
-wt-by4743 vs. wt.1
-wt-by4743 vs. wt.2
-wt-ypd vs. wt
-wt-ypd vs. wt.1
-wt-ypd vs. wt.2
-"""
-
 #Confirm knockdown of selected gene
 
 df = df.set_index("geneSymbol")
@@ -92,10 +50,11 @@ df = df.rename({numpy.nan:"dtype"},axis="index")
 df2 = df.drop(["dtype"])
 dataOfInterest = {}
 for column,gene in zip(columnsOfInterestFullName,columnsOfInterest):
-	if gene not in dataOfInterest: dataOfInterest[gene] = {}	
-	if str(df.at["dtype",column]) == "p_value": dataOfInterest[gene]["p-value"] = {key:float(value) for key,value in df2[column].to_dict().items()}
-	elif str(df.at["dtype",column]) == "M": dataOfInterest[gene]["ratio"] = {key:float(value) for key,value in df2[column].to_dict().items()} #log2(mutant/WT)
-	elif str(df.at["dtype",column]) == "A": dataOfInterest[gene]["expression"] = {key:float(value) for key,value in df2[column].to_dict().items()} #log2(wt)
+	if gene in list(df2.index.values):
+		if gene not in dataOfInterest: dataOfInterest[gene] = {}	
+		if str(df.at["dtype",column]) == "p_value": dataOfInterest[gene]["p-value"] = {key:float(value) for key,value in df2[column].to_dict().items()}
+		elif str(df.at["dtype",column]) == "M": dataOfInterest[gene]["ratio"] = {key:float(value) for key,value in df2[column].to_dict().items()} #log2(mutant/WT)
+		elif str(df.at["dtype",column]) == "A": dataOfInterest[gene]["expression"] = {key:float(value) for key,value in df2[column].to_dict().items()} #log2(wt)
 
 dataOfInterest = {key:value for key,value in dataOfInterest.items() if key in kinaseTypeMap}
 pickle.dump(dataOfInterest,open("geneExpressionForKinaseOfInterest.pkl","wb"))
@@ -130,7 +89,9 @@ plt.pie(wedgeSizes,labels = differentKinTypesPresent)
 
 #Hand curated results
 
-file = open("qualityKinaseKOHandAnnotation.txt","r")
+#file = open("qualityKinaseKOHandAnnotation.txt","r")
+file = open("qualityKinaseKO.txt","r")
+
 kinaseQualityHand = {str.lower(info[0]):mergeListOfStrings(info[1:]) for info in [x.split() for x in file.readlines()]}
 kinaseTypesGood = [" Kinase Catalytic"," Kinase Metabolic/Lipid"," Phosphatase Catalytic"," Phosphatase Metabolic/Lipid"]
 kinaseQualityHand = {key:value for key,value in kinaseQualityHand.items() if value in kinaseTypesGood}
@@ -143,7 +104,7 @@ plt.pie(wedgeSizes,labels = differentKinTypesPresent)
 #Get systematic names
 
 common2Syst = {str.lower(x.rstrip().split(",")[0]):str.lower(x.rstrip().split(",")[1]) for x in open("../TFAInferenceCode/YeastCommonAndSystematicGeneNames.csv","r").readlines()[1:]}
-
+syst2common = {value:key for key,value in common2Syst.items()}
 file.close()
 
 file = open("finalKinasesToDetermineInteractions2.txt","w")
@@ -152,8 +113,12 @@ for gene in kinaseQualityHand:
 	try:
 		file.write(gene+" "+kinaseQualityHand[gene]+" "+common2Syst[gene]+"\n")
 	except:
-		file.write(gene+" "+kinaseQualityHand[gene]+"\n")
+		if gene in syst2common: 
+			file.write(syst2common[gene]+" "+kinaseQualityHand[gene]+" "+gene+"\n")
+		else:
+			print gene
+
 file.close()
 
-plt.show()
+#plt.show()
 

@@ -298,6 +298,15 @@ class TFAHelper():
 			tempMat[x] = [indices.index(tf) for tf in range(len(temp))]
 		return np.transpose(tempMat).tolist()
 
+
+	def rankingChangePercentile(self,matrix):
+		tempMat = np.transpose(self.absoluteLog2FoldChange(matrix))
+		for x in range(len(tempMat)):
+			tempMin = 0#min(tempMat[x])
+			tempMax = max(tempMat[x]) - tempMin
+			tempMat[x] = [(val-tempMin)/tempMax for val in tempMat[x]]
+		return np.transpose(tempMat).tolist()
+
 	def valueRelative2Max(self,matrix):
 		tempMat = np.transpose(matrix)
 		for x in range(len(tempMat)):
@@ -354,11 +363,45 @@ class TFAHelper():
 			ycoords.append(float(count)/len(interactionsFound))
 		return xcoords,ycoords
 
+	def expectedInteractionFallInPercentileLevel(self,interactionsFound):
+		xcoords = []
+		ycoords = []
+		for score in [x/100.0 for x in range(100)]:
+			count = 0
+			for inter in interactionsFound:
+				if interactionsFound[inter] >= score:
+					count += 1
+			xcoords.append(score)
+			ycoords.append(float(count)/len(interactionsFound))
+		return xcoords,ycoords
+
 	@staticmethod
 	def dist(A,B,tol=5):
 		A = [np.round(a,tol) for a in A]
 		B = [np.round(b,tol) for b in B]
 
+		def sgn(a):
+			if a > 0: return 1
+			elif a < 0: return -1
+			else: return 0
+
+		mA = np.round(np.mean(A),tol)
+		mB = np.round(np.mean(B),tol)
+		rA = max(A) - mA
+		rB = max(B) - mB
+
+		if rB+rA == 0:
+			return mB - mA + 2 * sgn(mB-mA)
+		elif mA != mB:
+			return (mB - mA)/(rB+rA) + sgn(mB-mA)
+		else:
+			return (rB - rA)/max([rB,rA])
+		# A = [np.round(a,tol) for a in A]
+		# B = [np.round(b,tol) for b in B]
+
+		# return min([abs(np.log2(max(A)/max(B))),abs(np.log2(min(A)/min(B)))])
+
+		
 		def sgn(a):
 			if a > 0: return 1
 			elif a < 0: return -1

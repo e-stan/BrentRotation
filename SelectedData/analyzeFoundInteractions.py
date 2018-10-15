@@ -6,7 +6,7 @@ def flatten(l):
 
 
 
-kinaseListFile = "finalKinasesToDetermineInteractions.txt"
+kinaseListFile = "finalKinasesToDetermineInteractions2.txt"
 zevTFFile = "TFListZev.txt"
 
 TFs = [str.lower(x.rstrip()) for x in open(zevTFFile,"r").readlines()][:-1]
@@ -25,7 +25,7 @@ for interaction in interactions:
 	tf = [inter for inter in interaction[5:7] if str.lower(inter) in TFs]
 	if len(tf) != 1: print("error")
 	else: tf = str.lower(tf[0])
-	kinase = [inter for inter in (interaction[5:9]+flatten(interaction[9:11])) if str.lower(inter) in kinases and inter != tf]
+	kinase = list(set([inter for inter in (interaction[5:9]+flatten(interaction[9:11])) if str.lower(inter) in kinases and inter != tf]))
 	if len(kinase) != 1: print("error",kinase,tf)
 	elif interaction[12] == "physical":
 		kinase = [str.lower(inter) for inter in interaction[5:7] if str.lower(inter) != tf][0]

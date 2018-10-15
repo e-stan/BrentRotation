@@ -103,7 +103,6 @@ TOR1	Kinase Catalytic
 ELM1	Kinase Catalytic
 HSL1	Kinase Catalytic
 PRR1	Kinase Catalytic
-YPK1	Kinase Catalytic
 CTK1	Kinase Catalytic
 KDX1	Kinase Catalytic
 TPK3	Kinase Catalytic
