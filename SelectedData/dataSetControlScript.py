@@ -76,9 +76,10 @@ for gene in open("geneListZev.csv","r").readlines():
 	except:
 		print gene 
 print factoredGenes
-numDifferentiallyExpressedGenes = [[len([1 for gene2 in dataOfInterest[gene]["ratio"] if
-			abs(dataOfInterest[gene]["ratio"][gene2])>numpy.log2(1.7) and dataOfInterest[gene]["p-value"]
-			[gene2] < .05 and gene2 in factoredGenes]),gene] for gene in dataOfInterest]
+# numDifferentiallyExpressedGenes = [[len([1 for gene2 in dataOfInterest[gene]["ratio"] if
+# 			abs(dataOfInterest[gene]["ratio"][gene2])>numpy.log2(1.7) and gene2 in factoredGenes]),gene] for gene in dataOfInterest]
+numDifferentiallyExpressedGenes = [[sum([abs(dataOfInterest[gene]["ratio"][gene2]) for gene2 in dataOfInterest[gene]["ratio"] if
+			gene2 in factoredGenes]),gene] for gene in dataOfInterest]
 numDifferentiallyExpressedGenes.sort(key = lambda x : x[0],reverse = True)
 outfile = open("kinasesDifferentiallyExpressedGenes.txt","w")
 for num,gene in numDifferentiallyExpressedGenes:
